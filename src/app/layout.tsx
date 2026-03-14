@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
-      <body className="antialiased bg-black text-white selection:bg-indigo-400/30">
+      <body className="antialiased bg-white text-slate-900 selection:bg-indigo-400/30">
         <SmoothScroll>
           <CinematicOverlay />
           {children}

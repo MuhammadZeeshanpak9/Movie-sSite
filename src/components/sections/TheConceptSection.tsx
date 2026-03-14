@@ -58,7 +58,7 @@ export default function TheConceptSection() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="gpu-accelerated relative w-full py-60 flex flex-col items-center justify-center px-8 z-10 bg-white">
+    <section ref={containerRef} className="gpu-accelerated relative w-full py-60 flex flex-col items-center justify-center px-8 z-10 bg-transparent">
       <div className="max-w-7xl w-full">
         {/* Section Title */}
         <div className="concept-header mb-32 flex flex-col md:flex-row md:items-end justify-between">

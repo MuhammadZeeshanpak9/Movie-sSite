@@ -1,81 +1,19 @@
 'use client';
 
-import React, { useRef, Suspense } from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, PerspectiveCamera, useTexture, Environment } from '@react-three/drei';
-import * as THREE from 'three';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-function CinematicAsset({ 
-  url, 
-  meshRef, 
-  position, 
-  rotation, 
-  scale 
-}: { 
-  url: string; 
-  meshRef: React.RefObject<THREE.Mesh | null>; 
-  position: [number, number, number]; 
-  rotation: [number, number, number]; 
-  scale: number 
-}) {
-  const texture = useTexture(url);
-
-  return (
-    <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
-      <mesh ref={meshRef} position={position} rotation={rotation} scale={scale}>
-        <planeGeometry args={[1, 1]} />
-        <meshBasicMaterial map={texture} transparent opacity={0.6} side={THREE.DoubleSide} />
-      </mesh>
-    </Float>
-  );
-}
-
-function CameraScene({ 
-  cameraRef, 
-  reelRef 
-}: { 
-  cameraRef: React.RefObject<THREE.Mesh | null>; 
-  reelRef: React.RefObject<THREE.Mesh | null>;
-}) {
-  return (
-    <>
-      <PerspectiveCamera makeDefault position={[0, 0, 8]} />
-      <Environment preset="studio" />
-      
-      <Suspense fallback={null}>
-        {/* Film Camera - Enters from Left */}
-        <CinematicAsset 
-          url="/camera.png" 
-          meshRef={cameraRef}
-          position={[-10, 0, 0]} 
-          rotation={[0, -0.4, 0]} 
-          scale={3.5} 
-        />
-        {/* Film Reel - Enters from Right */}
-        <CinematicAsset 
-          url="/reel.png" 
-          meshRef={reelRef}
-          position={[10, -1, -2]} 
-          rotation={[0, 0.5, 0]} 
-          scale={3} 
-        />
-      </Suspense>
-    </>
-  );
-}
-
 export default function AnimatedCamera() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const cameraMeshRef = useRef<THREE.Mesh>(null);
-  const reelMeshRef = useRef<THREE.Mesh>(null);
+  const cameraRef = useRef<HTMLDivElement>(null);
+  const reelRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (!cameraMeshRef.current || !reelMeshRef.current) return;
+    if (!cameraRef.current || !reelRef.current) return;
 
-    // MASTER TIMELINE: Entry -> Cross -> Parallax
+    // MASTER TIMELINE: Continuous Drifting 2D Motion
     const masterTl = gsap.timeline({
       scrollTrigger: {
         trigger: 'body',
@@ -85,67 +23,110 @@ export default function AnimatedCamera() {
       }
     });
 
-    // Phase 1 & 2: Entry and Cross Motion
-    masterTl.to(cameraMeshRef.current.position, {
-      x: 12, // Cross to the other side
-      y: -2,
-      duration: 2,
+    // 1. Initial State: Cinematic preparation
+    gsap.set(cameraRef.current, { xPercent: 110, yPercent: 10, rotate: -5, scale: 0.9 });
+    gsap.set(reelRef.current, { xPercent: -15, yPercent: 40, rotate: 10, scale: 0.7 });
+
+    // 2. Initial dramatic Cross & Perspective Shift (Hero -> Concept)
+    masterTl.to(cameraRef.current, {
+      xPercent: 15,
+      yPercent: 30,
+      scale: 1.4,
+      rotate: 15,
+      duration: 3,
       ease: 'power2.inOut'
     }, 0)
-    .to(reelMeshRef.current.position, {
-      x: -12, // Cross to the other side
-      y: -5,
-      duration: 2,
-      ease: 'power2.inOut'
-    }, 0)
-    // Subtle rotation during cross
-    .to(cameraMeshRef.current.rotation, {
-      y: Math.PI * 0.1,
-      duration: 2,
-      ease: 'power2.inOut'
-    }, 0)
-    .to(reelMeshRef.current.rotation, {
-      y: -Math.PI * 0.1,
-      duration: 2,
+    .to(reelRef.current, {
+      xPercent: 75,
+      yPercent: 60,
+      scale: 1.2,
+      rotate: -10,
+      duration: 3,
       ease: 'power2.inOut'
     }, 0);
 
-    // Continuous downward parallax (applied throughout the timeline)
-    // We add a subtle y offset that grows with scroll
-    masterTl.to([cameraMeshRef.current.position, reelMeshRef.current.position], {
-      y: "-=18", // Move down as user scrolls
-      duration: 8,
-      ease: 'none'
-    }, 0);
+    // 3. Grand Wide Panning Sweep (Concept -> Mission -> Experience)
+    masterTl.to(cameraRef.current, {
+      xPercent: 85,
+      yPercent: 45,
+      scale: 1.1,
+      rotate: -5,
+      duration: 4,
+      ease: 'sine.inOut'
+    }, 3)
+    .to(reelRef.current, {
+      xPercent: 5,
+      yPercent: 20,
+      scale: 0.9,
+      rotate: 5,
+      duration: 4,
+      ease: 'sine.inOut'
+    }, 3);
+
+    // 4. Final Deep Perspective & Rotation (Characters -> Movement -> Contact)
+    masterTl.to(cameraRef.current, {
+      xPercent: 10,
+      yPercent: 75,
+      scale: 1.6,
+      rotate: 25,
+      duration: 5,
+      ease: 'power1.inOut'
+    }, 7)
+    .to(reelRef.current, {
+      xPercent: 60,
+      yPercent: 5,
+      scale: 1.8,
+      rotate: -20,
+      duration: 5,
+      ease: 'power1.inOut'
+    }, 7);
 
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="fixed inset-0 pointer-events-none z-0">
-      {/* Fixed Background Cinematic Base */}
-      <div className="absolute inset-0 z-[-2] bg-[#fdfcff]">
+    <div ref={containerRef} className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Background Layer (Fixed Base) */}
+      <div className="absolute inset-0 z-[-1] bg-[#fdfcff]/30">
         <Image 
-          src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2500&auto=format&fit=crop" 
-          alt="Cinematic Background" 
+          src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=2500&auto=format&fit=crop" 
+          alt="Cinematic Base" 
           fill 
-          className="object-cover opacity-10 grayscale brightness-110"
+          className="object-cover opacity-[0.02] grayscale"
+          priority
         />
       </div>
 
-      <Canvas
-        gl={{ antialias: false, powerPreference: 'high-performance' }}
-        dpr={[1, 2]}
-      >
-        <CameraScene cameraRef={cameraMeshRef} reelRef={reelMeshRef} />
-      </Canvas>
+      {/* 2D Persistent Motion Layer */}
+      <div className="relative w-full h-full">
+        {/* Film Camera (Continuous visibility) */}
+        <div ref={cameraRef} className="absolute w-[350px] md:w-[500px] aspect-square transition-opacity duration-1000 will-change-transform">
+          <Image 
+            src="/camera.png" 
+            alt="Film Camera" 
+            width={500} 
+            height={500} 
+            className="w-full h-full object-contain opacity-25 drop-shadow-[0_40px_100px_rgba(159,129,185,0.12)]"
+          />
+        </div>
+
+        {/* Film Reel (Continuous visibility) */}
+        <div ref={reelRef} className="absolute w-[250px] md:w-[400px] aspect-square transition-opacity duration-1000 will-change-transform">
+          <Image 
+            src="/reel.png" 
+            alt="Film Reel" 
+            width={400} 
+            height={400} 
+            className="w-full h-full object-contain opacity-15 drop-shadow-[0_40px_100px_rgba(159,129,185,0.12)]"
+          />
+        </div>
+      </div>
       
-      {/* Background Cinematic Lighting Floaters (GPU Optimized / #9f81b9 theme) */}
-      <div className="gpu-accelerated absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-[#9f81b9]/5 to-transparent opacity-30" />
-      <div className="gpu-accelerated absolute bottom-0 left-0 w-2/3 h-full bg-gradient-to-r from-[#9f81b9]/5 to-transparent opacity-30" />
+      {/* Cinematic Overlays */}
+      <div className="gpu-accelerated absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-[#9f81b9]/5 to-transparent opacity-25" />
+      <div className="gpu-accelerated absolute bottom-0 left-0 w-2/3 h-full bg-gradient-to-r from-[#9f81b9]/5 to-transparent opacity-25" />
       
-      {/* Film Grain / Scanline Overlay for texture */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-[1]">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-40" />
       </div>
     </div>
   );

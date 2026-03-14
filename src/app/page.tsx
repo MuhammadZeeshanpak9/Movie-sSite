@@ -15,7 +15,7 @@ import ContactSection from '@/components/sections/ContactSection';
 
 export default function Home() {
   return (
-    <main className="relative w-full text-slate-900 selection:bg-indigo-400/30">
+    <main className="relative w-full text-slate-900 bg-transparent selection:bg-indigo-400/30">
       {/* 2D Animated Background Layer */}
       <AnimatedCamera />
 
@@ -55,7 +55,7 @@ export default function Home() {
           <GlobalMovementSection />
         </div>
 
-        <div id="section-9" className="bg-white/50 shadow-[0_-50px_100px_rgba(0,0,0,0.02)]">
+        <div id="section-9" className="bg-transparent shadow-[0_-50px_100px_rgba(0,0,0,0.02)]">
           <ContactSection />
         </div>
 

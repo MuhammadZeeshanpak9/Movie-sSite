@@ -40,7 +40,7 @@ export default function CreatorsSection() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full py-60 px-8 z-10 bg-white">
+    <section ref={containerRef} className="relative w-full py-60 px-8 z-10 bg-transparent">
       <div className="max-w-7xl mx-auto">
         <div className="creators-header mb-32 flex flex-col md:flex-row md:items-end justify-between">
           <div className="max-w-2xl">

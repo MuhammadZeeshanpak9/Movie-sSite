@@ -47,7 +47,7 @@ export default function OurMissionSection() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full min-h-screen py-60 px-8 flex flex-col items-center justify-center overflow-hidden bg-white">
+    <section ref={containerRef} className="relative w-full min-h-screen py-60 px-8 flex flex-col items-center justify-center overflow-hidden bg-transparent">
       <div className="max-w-7xl z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-40 items-center">
         {/* Cinematic Typography Side */}
         <div className="mission-content gpu-accelerated">

@@ -33,7 +33,7 @@ export default function ContactSection() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full py-60 flex flex-col items-center justify-center px-8 z-10 bg-white">
+    <section ref={containerRef} className="relative w-full py-60 flex flex-col items-center justify-center px-8 z-10 bg-transparent">
       <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-40 items-start">
         
         {/* Final Statement */}

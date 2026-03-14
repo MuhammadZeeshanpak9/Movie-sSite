@@ -41,7 +41,7 @@ export default function HowItWorksSection() {
   }, { scope: containerRef });
   
   return (
-    <section ref={containerRef} className="relative w-full py-60 px-8 z-10 bg-white overflow-hidden">
+    <section ref={containerRef} className="relative w-full py-60 px-8 z-10 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="how-header mb-40">
           <span className="text-[10px] font-mono text-indigo-400 tracking-[0.6em] mb-6 block uppercase font-black">Strategic Pipeline</span>

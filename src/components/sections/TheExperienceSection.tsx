@@ -55,7 +55,7 @@ export default function TheExperienceSection() {
   }, { scope: containerRef });
   
   return (
-    <section ref={containerRef} className="relative w-full py-60 px-8 flex flex-col items-center z-10 overflow-hidden bg-white">
+    <section ref={containerRef} className="relative w-full py-60 px-8 flex flex-col items-center z-10 overflow-hidden bg-transparent">
       {/* Large Cinematic Header */}
       <div className="exp-title max-w-7xl w-full mb-40">
         <span className="text-indigo-400 font-mono tracking-[0.6em] text-[10px] block mb-6 font-black uppercase">Technical Mastery</span>
