@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --color-indigo-900: #1a103c;
+  --color-indigo-800: #2d1b54;
+  --color-indigo-400: #9f81b9;
+  --color-indigo-200: #d6c5e3;
+  
+  --font-playfair: "Playfair Display", serif;
+  --font-inter: "Inter", sans-serif;
+  --font-mono: "Space Mono", monospace;
+
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+:root {
+  --foreground-rgb: 15, 23, 42; /* Slate 900 */
+  --background-rgb: 255, 255, 255;
+  
+  --primary-accent: #9f81b9;
+}
+
+/* Performance & GPU Optimization */
+.gpu-accelerated {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Premium Minimalist Scrollbar - Disabled when Lenis is active */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(159, 129, 185, 0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(159, 129, 185, 0.5);
+}
+
+.outline-text {
+  -webkit-text-stroke: 1px rgba(159, 129, 185, 0.4);
+  color: transparent;
+  transition: transform 0.7s var(--ease-cinematic), opacity 0.7s var(--ease-cinematic);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(159, 129, 185, 0.1);
+  will-change: transform, opacity;
+}
+
+.chromatic-aberration {
+  text-shadow: 1px 0 0 rgba(159, 129, 185, 0.2), -1px 0 0 rgba(159, 129, 185, 0.1);
+}
