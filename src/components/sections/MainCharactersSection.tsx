@@ -48,10 +48,10 @@ export default function MainCharactersSection() {
             <span className="text-xs font-mono text-indigo-400 tracking-[1em] mb-4 block uppercase font-black">THE ENSEMBLE</span>
             <h2 className="text-6xl md:text-[8rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
               MAIN <br />
-              <span className="italic font-light text-slate-300 uppercase">CHARACTERS.</span>
+              <span className="italic font-light text-[#9f81b9] uppercase">CHARACTERS.</span>
             </h2>
           </div>
-          <p className="max-w-xs text-slate-400 font-inter font-light mt-8 md:mt-0 border-l border-slate-100 pl-8 leading-loose uppercase text-[10px] tracking-widest">
+          <p className="max-w-xs text-[#9f81b9] font-inter font-light mt-8 md:mt-0 border-l border-slate-100 pl-8 leading-loose uppercase text-[10px] tracking-widest">
             A script is nothing without the souls that inhabit it. Meet the pillars of the upcoming narrative.
           </p>
         </div>
@@ -109,14 +109,14 @@ function CharacterCard({ name, role, quote, index, image }: { name: string; role
         </div>
 
         <div className="h-0 group-hover:h-24 overflow-hidden transition-all duration-700 ease-cinematic">
-          <p className="text-[10px] text-slate-500 font-light italic leading-loose uppercase tracking-widest border-t border-indigo-100 pt-6">
+          <p className="text-[10px] text-[#9f81b9] font-light italic leading-loose uppercase tracking-widest border-t border-indigo-100 pt-6">
             &quot;{quote}&quot;
           </p>
         </div>
         
         {/* Elegant Accent */}
         <div className="absolute top-0 right-0 p-8 transform rotate-90 origin-top-right">
-          <span className="text-[9px] font-mono text-slate-200 group-hover:text-indigo-200 tracking-widest uppercase font-bold transition-colors">STAFF ID-{100 + index}</span>
+          <span className="text-[9px] font-mono text-[#9f81b9] group-hover:text-indigo-200 tracking-widest uppercase font-bold transition-colors">STAFF ID-{100 + index}</span>
         </div>
       </div>
       

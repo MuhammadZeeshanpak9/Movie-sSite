@@ -54,10 +54,10 @@ export default function OurMissionSection() {
           <span className="text-[10px] font-mono text-indigo-400 tracking-[0.6em] mb-8 block uppercase font-black">Strategic Intent</span>
           <h2 className="text-6xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] mb-12 tracking-tighter">
             BEYOND <br />
-            <span className="italic font-light text-slate-300">THE REEL.</span>
+            <span className="italic font-light text-[#9f81b9]">THE REEL.</span>
           </h2>
           <div className="w-16 h-[1px] bg-indigo-400 mb-12" />
-          <p className="text-2xl md:text-3xl font-light text-slate-500 mb-12 font-inter leading-relaxed max-w-xl uppercase tracking-widest">
+          <p className="text-2xl md:text-3xl font-light text-[#9f81b9] mb-12 font-inter leading-relaxed max-w-xl uppercase tracking-widest">
             We transform you from a passive viewer to the active <span className="text-slate-900 font-black">director of your journey.</span>
           </p>
           
@@ -94,7 +94,7 @@ export default function OurMissionSection() {
           
           <div className="absolute -bottom-16 -left-16 bg-white p-12 max-w-sm shadow-[0_50px_100px_rgba(0,0,0,0.08)] border border-slate-50 hidden sm:block">
               <h4 className="text-3xl font-playfair font-black text-slate-900 mb-6 italic">The Director’s Cut</h4>
-              <p className="text-sm font-light text-slate-500 leading-relaxed uppercase tracking-widest">
+              <p className="text-sm font-light text-[#9f81b9] leading-relaxed uppercase tracking-widest">
                 When you dictate your story, you change the world. You are the final authority of your own production.
               </p>
           </div>

@@ -41,13 +41,13 @@ export default function ContactSection() {
           <span className="text-[10px] font-mono text-indigo-400 tracking-[0.6em] mb-8 block uppercase font-black">Open Call</span>
           <h2 className="text-6xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] mb-12 tracking-tighter">
             JOIN THE <br />
-            <span className="italic font-light text-slate-300">SCENE.</span>
+            <span className="italic font-light text-[#9f81b9]">SCENE.</span>
           </h2>
           <div className="w-16 h-[1px] bg-indigo-400 mb-12" />
-          <p className="text-xl text-slate-500 font-light leading-relaxed max-w-md mb-12 uppercase tracking-widest">
+          <p className="text-xl text-[#9f81b9] font-light leading-relaxed max-w-md mb-12 uppercase tracking-widest">
             The script is waiting for your signature. The crew is on standby. Your epic begins today.
           </p>
-          <div className="text-[10px] font-mono text-slate-300 tracking-[1em] uppercase font-bold">
+          <div className="text-[10px] font-mono text-[#9f81b9] tracking-[1em] uppercase font-bold">
             NOW CASTING PROTAGONISTS
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function ContactSection() {
                 <span className="text-[10px] font-mono text-indigo-400 uppercase font-black tracking-widest">01. Identity</span>
                 <input 
                    type="text" 
-                   className="w-full bg-transparent border-b border-slate-200 py-6 text-2xl font-playfair text-slate-800 placeholder:text-slate-200 focus:outline-none focus:border-indigo-600 transition-colors"
+                   className="w-full bg-transparent border-b border-slate-200 py-6 text-2xl font-playfair text-slate-800 placeholder:text-[#9f81b9]/30 focus:outline-none focus:border-indigo-600 transition-colors"
                    placeholder="Your Name"
                 />
              </div>
@@ -68,7 +68,7 @@ export default function ContactSection() {
                 <span className="text-[10px] font-mono text-indigo-400 uppercase font-black tracking-widest">02. Signal</span>
                 <input 
                    type="email" 
-                   className="w-full bg-transparent border-b border-slate-200 py-6 text-2xl font-playfair text-slate-800 placeholder:text-slate-200 focus:outline-none focus:border-indigo-600 transition-colors"
+                   className="w-full bg-transparent border-b border-slate-200 py-6 text-2xl font-playfair text-slate-800 placeholder:text-[#9f81b9]/30 focus:outline-none focus:border-indigo-600 transition-colors"
                    placeholder="Email Address"
                 />
              </div>
@@ -77,7 +77,7 @@ export default function ContactSection() {
                 <span className="text-[10px] font-mono text-indigo-400 uppercase font-black tracking-widest">03. Narrative</span>
                 <textarea 
                    rows={1}
-                   className="w-full bg-transparent border-b border-slate-200 py-6 text-2xl font-playfair text-slate-800 placeholder:text-slate-200 focus:outline-none focus:border-indigo-600 transition-colors resize-none"
+                   className="w-full bg-transparent border-b border-slate-200 py-6 text-2xl font-playfair text-slate-800 placeholder:text-[#9f81b9]/30 focus:outline-none focus:border-indigo-600 transition-colors resize-none"
                    placeholder="Your Logline"
                 />
              </div>

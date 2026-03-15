@@ -105,7 +105,7 @@ export default function TheConceptSection() {
                   </h3>
                 </div>
 
-                <p className="text-base font-light text-slate-500 group-hover:text-slate-300 leading-relaxed max-w-[200px]">
+                <p className="text-base font-light text-[#9f81b9] group-hover:text-slate-300 leading-relaxed max-w-[200px]">
                   {scene.desc}
                 </p>
 

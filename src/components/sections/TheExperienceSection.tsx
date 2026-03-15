@@ -61,7 +61,7 @@ export default function TheExperienceSection() {
         <span className="text-indigo-400 font-mono tracking-[0.6em] text-[10px] block mb-6 font-black uppercase">Technical Mastery</span>
         <h2 className="text-6xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
           THE <br />
-          <span className="italic font-light text-slate-300">EXPERIENCE.</span>
+          <span className="italic font-light text-[#9f81b9]">EXPERIENCE.</span>
         </h2>
       </div>
 
@@ -117,7 +117,7 @@ function ExperienceRow({ title, desc, label, index, image }: { title: string; de
         <h3 className="text-4xl md:text-6xl font-playfair font-bold mb-8 text-slate-900 leading-tight">
           {title}
         </h3>
-        <p className="text-lg text-slate-500 font-light leading-relaxed max-w-md uppercase tracking-wider">
+        <p className="text-lg text-[#9f81b9] font-light leading-relaxed max-w-md uppercase tracking-wider">
           {desc}
         </p>
         

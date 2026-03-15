@@ -56,12 +56,12 @@ export default function HeroSection() {
         <div className="hero-reveal relative mb-12">
           <h1 className="text-7xl md:text-[12rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
             CRAFTING <br />
-            <span className="italic font-light text-slate-300">LEGACIES.</span>
+            <span className="italic font-light text-[#9f81b9]">LEGACIES.</span>
           </h1>
         </div>
 
         <div className="hero-reveal max-w-xl mb-16">
-          <p className="text-lg md:text-xl font-inter font-light text-slate-500 leading-relaxed uppercase tracking-widest">
+          <p className="text-lg md:text-xl font-inter font-light text-[#9f81b9] leading-relaxed uppercase tracking-widest">
             A cinematic experience designed for those who <br />
             demand <span className="text-indigo-600 font-bold">visual excellence</span> and narrative depth.
           </p>
@@ -81,15 +81,15 @@ export default function HeroSection() {
       {/* Cinematic Metadata Corner */}
       <div className="absolute bottom-12 right-12 hidden md:flex items-end gap-12 select-none">
         <div className="flex flex-col gap-1 items-end">
-          <span className="text-[10px] font-mono text-slate-300">RES</span>
+          <span className="text-[10px] font-mono text-[#9f81b9]">RES</span>
           <span className="text-xs font-mono text-slate-900 uppercase">8K RAW</span>
         </div>
         <div className="flex flex-col gap-1 items-end">
-          <span className="text-[10px] font-mono text-slate-300">FPS</span>
+          <span className="text-[10px] font-mono text-[#9f81b9]">FPS</span>
           <span className="text-xs font-mono text-slate-900 uppercase">24.00</span>
         </div>
         <div className="flex flex-col gap-1 items-end">
-          <span className="text-[10px] font-mono text-slate-300">ISO</span>
+          <span className="text-[10px] font-mono text-[#9f81b9]">ISO</span>
           <span className="text-xs font-mono text-slate-900 uppercase">800</span>
         </div>
       </div>

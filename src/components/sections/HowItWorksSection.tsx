@@ -47,7 +47,7 @@ export default function HowItWorksSection() {
           <span className="text-[10px] font-mono text-indigo-400 tracking-[0.6em] mb-6 block uppercase font-black">Strategic Pipeline</span>
           <h2 className="text-6xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
             THE <br />
-            <span className="italic font-light text-slate-300">PROCESS.</span>
+            <span className="italic font-light text-[#9f81b9]">PROCESS.</span>
           </h2>
         </div>
 
