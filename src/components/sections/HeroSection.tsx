@@ -35,16 +35,18 @@ export default function HeroSection() {
 
   return (
     <section ref={containerRef} className="relative w-full pt-40 pb-24 md:min-h-screen flex flex-col justify-center px-8 md:px-24 z-10 overflow-hidden bg-transparent">
-      {/* Background Image Overlay */}
-      <div className="hero-parallax-bg gpu-accelerated absolute inset-0 z-[-1] opacity-60">
+      {/* Local Vintage Camera Background */}
+      <div className="hero-parallax-bg gpu-accelerated absolute inset-0 z-[-1] opacity-80 transition-all duration-1000">
         <Image 
-          src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=2500&auto=format&fit=crop" 
-          alt="Professional Camera" 
+          src="/hero_bg_camera.png" 
+          alt="Vintage Film Camera Background" 
           fill 
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" />
+        {/* Indigo Cinematic Overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/30 to-transparent" />
+        <div className="absolute inset-0 bg-[#9f81b9]/10" />
       </div>
 
       <div className="hero-content gpu-accelerated max-w-7xl w-full mx-auto">
@@ -54,21 +56,22 @@ export default function HeroSection() {
         </div>
         
         <div className="hero-reveal relative mb-12">
-          <h1 className="text-7xl md:text-[12rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
-            CRAFTING <br />
-            <span className="italic font-light text-[#9f81b9]">LEGACIES.</span>
+          <h1 className="text-5xl md:text-[7rem] font-playfair font-black text-slate-900 leading-[0.95] tracking-tighter">
+            THE WORLD&apos;S <br />
+            GREATEST MOVIE <br />
+            <span className="italic font-light text-[#6a4a8c]">ABOUT YOU.</span>
           </h1>
         </div>
 
         <div className="hero-reveal max-w-xl mb-16">
-          <p className="text-lg md:text-xl font-inter font-light text-[#9f81b9] leading-relaxed uppercase tracking-widest">
+          <p className="text-lg md:text-xl font-inter font-light text-[#6a4a8c] leading-relaxed uppercase tracking-widest">
             A cinematic experience designed for those who <br />
             demand <span className="text-indigo-600 font-bold">visual excellence</span> and narrative depth.
           </p>
         </div>
 
         <div className="hero-reveal flex flex-wrap gap-8 items-center">
-          <button className="px-12 py-5 bg-[#9f81b9] text-white text-xs font-mono tracking-[0.3em] uppercase font-bold hover:bg-[#8a6da6] transition-all transform hover:scale-105 active:scale-95 shadow-[0_20px_40px_rgba(159,129,185,0.3)]">
+          <button className="px-12 py-5 bg-[#6a4a8c] text-white text-xs font-mono tracking-[0.3em] uppercase font-bold hover:bg-[#5a3b7a] transition-all transform hover:scale-105 active:scale-95 shadow-[0_20px_40px_rgba(106,74,140,0.3)]">
             Explore Act I
           </button>
           <button className="group flex items-center gap-4 text-xs font-mono tracking-[0.3em] text-slate-900 uppercase font-bold">
@@ -78,18 +81,32 @@ export default function HeroSection() {
         </div>
       </div>
 
+      {/* Top Right Branding Column - Vertical Stack */}
+      <div className="hero-reveal absolute top-20 right-12 md:right-24 hidden lg:flex flex-col items-end gap-3 select-none pointer-events-none z-20 text-right">
+        <span className="text-[10px] md:text-xs font-mono tracking-[0.5em] text-black uppercase font-black opacity-80">
+          THE WORLD&apos;S
+        </span>
+        <span className="text-[10px] md:text-xs font-mono tracking-[0.5em] text-black uppercase font-black opacity-90">
+          GREATEST MOVIE
+        </span>
+        <span className="text-xs md:text-sm font-mono tracking-[0.6em] text-black uppercase font-black drop-shadow-sm">
+          ABOUT YOU
+        </span>
+        <div className="w-16 h-[1px] bg-black/60 mt-4" />
+      </div>
+
       {/* Cinematic Metadata Corner */}
       <div className="absolute bottom-12 right-12 hidden md:flex items-end gap-12 select-none">
         <div className="flex flex-col gap-1 items-end">
-          <span className="text-[10px] font-mono text-[#9f81b9]">RES</span>
+          <span className="text-[10px] font-mono text-[#6a4a8c]">RES</span>
           <span className="text-xs font-mono text-slate-900 uppercase">8K RAW</span>
         </div>
         <div className="flex flex-col gap-1 items-end">
-          <span className="text-[10px] font-mono text-[#9f81b9]">FPS</span>
+          <span className="text-[10px] font-mono text-[#6a4a8c]">FPS</span>
           <span className="text-xs font-mono text-slate-900 uppercase">24.00</span>
         </div>
         <div className="flex flex-col gap-1 items-end">
-          <span className="text-[10px] font-mono text-[#9f81b9]">ISO</span>
+          <span className="text-[10px] font-mono text-[#6a4a8c]">ISO</span>
           <span className="text-xs font-mono text-slate-900 uppercase">800</span>
         </div>
       </div>

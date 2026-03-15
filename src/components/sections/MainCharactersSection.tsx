@@ -48,10 +48,10 @@ export default function MainCharactersSection() {
             <span className="text-xs font-mono text-indigo-400 tracking-[1em] mb-4 block uppercase font-black">THE ENSEMBLE</span>
             <h2 className="text-6xl md:text-[8rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
               MAIN <br />
-              <span className="italic font-light text-[#9f81b9] uppercase">CHARACTERS.</span>
+              <span className="italic font-light text-[#6a4a8c] uppercase">CHARACTERS.</span>
             </h2>
           </div>
-          <p className="max-w-xs text-[#9f81b9] font-inter font-light mt-8 md:mt-0 border-l border-slate-100 pl-8 leading-loose uppercase text-[10px] tracking-widest">
+          <p className="max-w-xs text-[#6a4a8c] font-inter font-light mt-8 md:mt-0 border-l border-slate-100 pl-8 leading-loose uppercase text-[10px] tracking-widest">
             A script is nothing without the souls that inhabit it. Meet the pillars of the upcoming narrative.
           </p>
         </div>
@@ -86,21 +86,32 @@ function CharacterCard({ name, role, quote, index, image }: { name: string; role
       ref={cardRef}
       onMouseEnter={() => tlRef.current?.play()}
       onMouseLeave={() => tlRef.current?.reverse()}
-      className="character-card gpu-accelerated group relative h-[500px] md:h-[600px] bg-slate-50 overflow-hidden border border-slate-100"
+      onTouchStart={() => {
+        // Toggle animation on touch
+        const tl = tlRef.current;
+        if (!tl) return;
+        
+        if (tl.progress() === 0) {
+          tl.play();
+        } else {
+          tl.reverse();
+        }
+      }}
+      className="character-card gpu-accelerated group relative h-[500px] md:h-[600px] bg-slate-50 overflow-hidden border border-slate-100 cursor-pointer"
     >
       <div className="char-img absolute inset-0 z-0">
         <Image 
           src={image} 
           alt={name} 
           fill 
-          className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+          className="object-cover grayscale group-hover:grayscale-0 group-active:grayscale-0 transition-all duration-1000"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent opacity-80 group-hover:opacity-40 group-active:opacity-40 transition-opacity duration-700" />
       </div>
 
       <div className="char-content relative h-full p-10 flex flex-col justify-end z-10">
         <div className="mb-4">
-          <span className="text-[10px] font-mono text-indigo-400 tracking-[0.4em] font-black block mb-2">0{index + 1} {"//"} {role}</span>
+          <span className="text-[10px] font-mono text-indigo-500 tracking-[0.4em] font-black block mb-2">0{index + 1} {"//"} {role}</span>
           <h3 className="text-4xl font-playfair font-black text-slate-900 leading-tight uppercase group-hover:text-indigo-900 transition-colors">
             {name.split(' ').map((word, i) => (
               <span key={i} className="block">{word}</span>
@@ -108,15 +119,15 @@ function CharacterCard({ name, role, quote, index, image }: { name: string; role
           </h3>
         </div>
 
-        <div className="h-0 group-hover:h-24 overflow-hidden transition-all duration-700 ease-cinematic">
-          <p className="text-[10px] text-[#9f81b9] font-light italic leading-loose uppercase tracking-widest border-t border-indigo-100 pt-6">
+        <div className="h-0 group-hover:h-24 group-active:h-24 overflow-hidden transition-all duration-700 ease-cinematic">
+          <p className="text-[10px] text-[#6a4a8c] font-light italic leading-loose uppercase tracking-widest border-t border-indigo-100 pt-6">
             &quot;{quote}&quot;
           </p>
         </div>
         
         {/* Elegant Accent */}
         <div className="absolute top-0 right-0 p-8 transform rotate-90 origin-top-right">
-          <span className="text-[9px] font-mono text-[#9f81b9] group-hover:text-indigo-200 tracking-widest uppercase font-bold transition-colors">STAFF ID-{100 + index}</span>
+          <span className="text-[9px] font-mono text-[#6a4a8c] group-hover:text-indigo-200 tracking-widest uppercase font-bold transition-colors">STAFF ID-{100 + index}</span>
         </div>
       </div>
       

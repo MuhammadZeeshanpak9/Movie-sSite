@@ -41,13 +41,13 @@ export default function ContactSection() {
           <span className="text-[10px] font-mono text-indigo-400 tracking-[0.6em] mb-8 block uppercase font-black">Open Call</span>
           <h2 className="text-6xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] mb-12 tracking-tighter">
             JOIN THE <br />
-            <span className="italic font-light text-[#9f81b9]">SCENE.</span>
+            <span className="italic font-light text-[#6a4a8c]">SCENE.</span>
           </h2>
           <div className="w-16 h-[1px] bg-indigo-400 mb-12" />
-          <p className="text-xl text-[#9f81b9] font-light leading-relaxed max-w-md mb-12 uppercase tracking-widest">
+          <p className="text-xl text-[#6a4a8c] font-light leading-relaxed max-w-md mb-12 uppercase tracking-widest">
             The script is waiting for your signature. The crew is on standby. Your epic begins today.
           </p>
-          <div className="text-[10px] font-mono text-[#9f81b9] tracking-[1em] uppercase font-bold">
+          <div className="text-[10px] font-mono text-[#6a4a8c] tracking-[1em] uppercase font-bold">
             NOW CASTING PROTAGONISTS
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function ContactSection() {
                 <span className="text-[10px] font-mono text-indigo-400 uppercase font-black tracking-widest">01. Identity</span>
                 <input 
                    type="text" 
-                   className="w-full bg-transparent border-b border-slate-200 py-6 text-2xl font-playfair text-slate-800 placeholder:text-[#9f81b9]/30 focus:outline-none focus:border-indigo-600 transition-colors"
+                   className="w-full bg-transparent border-b border-slate-200 py-6 text-2xl font-playfair text-slate-800 placeholder:text-[#6a4a8c]/30 focus:outline-none focus:border-indigo-600 transition-colors"
                    placeholder="Your Name"
                 />
              </div>
@@ -68,7 +68,7 @@ export default function ContactSection() {
                 <span className="text-[10px] font-mono text-indigo-400 uppercase font-black tracking-widest">02. Signal</span>
                 <input 
                    type="email" 
-                   className="w-full bg-transparent border-b border-slate-200 py-6 text-2xl font-playfair text-slate-800 placeholder:text-[#9f81b9]/30 focus:outline-none focus:border-indigo-600 transition-colors"
+                   className="w-full bg-transparent border-b border-slate-200 py-6 text-2xl font-playfair text-slate-800 placeholder:text-[#6a4a8c]/30 focus:outline-none focus:border-indigo-600 transition-colors"
                    placeholder="Email Address"
                 />
              </div>
@@ -77,12 +77,12 @@ export default function ContactSection() {
                 <span className="text-[10px] font-mono text-indigo-400 uppercase font-black tracking-widest">03. Narrative</span>
                 <textarea 
                    rows={1}
-                   className="w-full bg-transparent border-b border-slate-200 py-6 text-2xl font-playfair text-slate-800 placeholder:text-[#9f81b9]/30 focus:outline-none focus:border-indigo-600 transition-colors resize-none"
+                   className="w-full bg-transparent border-b border-slate-200 py-6 text-2xl font-playfair text-slate-800 placeholder:text-[#6a4a8c]/30 focus:outline-none focus:border-indigo-600 transition-colors resize-none"
                    placeholder="Your Logline"
                 />
              </div>
 
-             <button className="group relative w-full overflow-hidden bg-[#9f81b9] py-10 text-white text-xs font-black tracking-[0.5em] uppercase transition-all shadow-[0_20px_40px_rgba(159,129,185,0.2)] hover:scale-[1.02] active:scale-[0.98]">
+             <button className="group relative w-full overflow-hidden bg-[#6a4a8c] py-10 text-white text-xs font-black tracking-[0.5em] uppercase transition-all shadow-[0_20px_40px_rgba(106,74,140,0.2)] hover:scale-[1.02] active:scale-[0.98]">
                 <span className="relative z-10">Submit Script</span>
                 <div className="absolute inset-0 bg-indigo-800 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.22, 1, 0.36, 1]" />
              </button>

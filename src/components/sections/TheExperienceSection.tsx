@@ -61,7 +61,7 @@ export default function TheExperienceSection() {
         <span className="text-indigo-400 font-mono tracking-[0.6em] text-[10px] block mb-6 font-black uppercase">Technical Mastery</span>
         <h2 className="text-6xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
           THE <br />
-          <span className="italic font-light text-[#9f81b9]">EXPERIENCE.</span>
+          <span className="italic font-light text-[#6a4a8c]">EXPERIENCE.</span>
         </h2>
       </div>
 
@@ -83,21 +83,21 @@ function ExperienceRow({ title, desc, label, index, image }: { title: string; de
       className={`experience-row gpu-accelerated flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-16 md:gap-32 items-center`}
     >
       {/* Visual Placeholder (Cinematic Frame) */}
-      <div className="flex-1 w-full aspect-[16/9] bg-slate-50 relative overflow-hidden group shadow-[0_20px_50px_rgba(0,0,0,0.02)]">
-        <div className="absolute inset-0 z-0 transition-transform duration-1000 group-hover:scale-105">
+      <div className="flex-1 w-full aspect-[16/9] bg-slate-50 relative overflow-hidden group shadow-[0_20px_50px_rgba(0,0,0,0.02)] cursor-pointer">
+        <div className="absolute inset-0 z-0 transition-transform duration-1000 group-hover:scale-105 group-active:scale-105">
            <Image 
              src={image} 
              alt={title} 
              fill 
-             className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+             className="object-cover opacity-80 group-hover:opacity-100 group-active:opacity-100 transition-opacity"
            />
-           <div className="absolute inset-0 bg-indigo-900/10 group-hover:bg-transparent transition-colors duration-700" />
+           <div className="absolute inset-0 bg-indigo-900/10 group-hover:bg-transparent group-active:bg-transparent transition-colors duration-700" />
         </div>
         
         {/* Abstract Cinematic Element */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-[80%] h-[1px] bg-white/20 group-hover:w-full transition-all duration-700" />
-            <div className="absolute w-[1px] h-[30%] bg-white/20 group-hover:h-[50%] transition-all duration-700" />
+            <div className="w-[80%] h-[1px] bg-white/20 group-hover:w-full group-active:w-full transition-all duration-700" />
+            <div className="absolute w-[1px] h-[30%] bg-white/20 group-hover:h-[50%] group-active:h-[50%] transition-all duration-700" />
         </div>
 
         <div className="absolute bottom-8 left-8 text-[10px] font-mono text-slate-400 tracking-[0.5em] uppercase font-bold">
@@ -117,7 +117,7 @@ function ExperienceRow({ title, desc, label, index, image }: { title: string; de
         <h3 className="text-4xl md:text-6xl font-playfair font-bold mb-8 text-slate-900 leading-tight">
           {title}
         </h3>
-        <p className="text-lg text-[#9f81b9] font-light leading-relaxed max-w-md uppercase tracking-wider">
+        <p className="text-lg text-[#6a4a8c] font-light leading-relaxed max-w-md uppercase tracking-wider">
           {desc}
         </p>
         

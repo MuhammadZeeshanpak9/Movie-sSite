@@ -47,7 +47,7 @@ export default function CreatorsSection() {
             <span className="text-xs font-mono text-indigo-400 tracking-[1em] mb-4 block uppercase font-black">THE ARCHITECTS</span>
             <h2 className="text-6xl md:text-[8rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter uppercase">
               CREATIVE <br />
-              <span className="italic font-light text-[#9f81b9]">FORCE.</span>
+              <span className="italic font-light text-[#6a4a8c]">FORCE.</span>
             </h2>
           </div>
         </div>
@@ -111,9 +111,9 @@ function CreatorCard({ char, index }: { char: typeof CREATORS[0], index: number 
         <h3 className="text-3xl md:text-4xl font-playfair font-bold text-slate-800 mb-4 group-hover:text-indigo-400 transition-colors duration-500">
           {char.name}
         </h3>
-        <div className="text-xs text-[#9f81b9] font-mono tracking-wider mb-8 uppercase font-bold">{char.role}</div>
+        <div className="text-xs text-[#6a4a8c] font-mono tracking-wider mb-8 uppercase font-bold">{char.role}</div>
         
-        <p className="font-light text-[#9f81b9] text-base leading-relaxed uppercase tracking-widest">
+        <p className="font-light text-[#6a4a8c] text-base leading-relaxed uppercase tracking-widest">
           {char.desc}
         </p>
 

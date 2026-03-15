@@ -1,133 +1,145 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
+
+/**
+ * AnimatedCamera Component
+ * Feature: 6 vintage cameras wandering dynamically across the entire screen.
+ * They move independently left, right, up, and down to create a "drifting on set" feel.
+ */
 export default function AnimatedCamera() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const cameraRef = useRef<HTMLDivElement>(null);
-  const reelRef = useRef<HTMLDivElement>(null);
+  
+  // Refs for 6 camera instances
+  const camRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ];
 
   useGSAP(() => {
-    if (!cameraRef.current || !reelRef.current) return;
+    const cameras = camRefs.map(ref => ref.current).filter((el): el is HTMLDivElement => el !== null);
+    if (cameras.length === 0) return;
 
-    // MASTER TIMELINE: Continuous Drifting 2D Motion
-    const masterTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: 'body',
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1.5,
+    // ── INITIAL RANDOMIZATION ──────────────────────────────────────
+    cameras.forEach((cam, i) => {
+      // Set randomized start positions and scales
+      gsap.set(cam, {
+        opacity: i === 0 ? 0.6 : 0.35,
+        scale: 1 - (i * 0.1),
+        // Start them scattered across the viewport
+        x: `${Math.random() * 80 - 40}vw`,
+        y: `${Math.random() * 60 - 30}vh`,
+      });
+    });
+
+    // ── LARGE-SCALE WANDERING (Everywhere on Screen) ──────────────
+    cameras.forEach((cam, i) => {
+      // Independent horizontal wandering
+      gsap.to(cam, {
+        x: (i % 2 === 0) ? `+=${15 + Math.random() * 25}vw` : `-=${15 + Math.random() * 25}vw`,
+        duration: 8 + Math.random() * 10,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
+      });
+
+      // Independent vertical wandering
+      gsap.to(cam, {
+        y: (i % 3 === 0) ? `+=${15 + Math.random() * 20}vh` : `-=${15 + Math.random() * 20}vh`,
+        duration: 10 + Math.random() * 12,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
+      });
+
+      // Inner image tilt/sway for personality
+      const inner = cam.querySelector('img');
+      if (inner) {
+        gsap.to(inner, {
+          rotate: i % 2 === 0 ? 25 : -25,
+          duration: 5 + Math.random() * 5,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+        });
       }
     });
 
-    // 1. Initial State: Cinematic preparation
-    gsap.set(cameraRef.current, { xPercent: 110, yPercent: 10, rotate: -5, scale: 0.9 });
-    gsap.set(reelRef.current, { xPercent: -15, yPercent: 40, rotate: 10, scale: 0.7 });
+    // ── SCROLL-SENSITIVE DEPTH ────────────────────────────────────
+    // Maintains the scroll connection while they wander
+    cameras.forEach((cam, i) => {
+      const depth = 1 - (i * 0.1);
+      gsap.to(cam, {
+        y: `+=${30 * depth}vh`,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: 'body',
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1.5 + (i * 0.5),
+        },
+      });
+    });
 
-    // 2. Initial dramatic Cross & Perspective Shift (Hero -> Concept)
-    masterTl.to(cameraRef.current, {
-      xPercent: 15,
-      yPercent: 30,
-      scale: 1.4,
-      rotate: 15,
-      duration: 3,
-      ease: 'power2.inOut'
-    }, 0)
-    .to(reelRef.current, {
-      xPercent: 75,
-      yPercent: 60,
-      scale: 1.2,
-      rotate: -10,
-      duration: 3,
-      ease: 'power2.inOut'
-    }, 0);
-
-    // 3. Grand Wide Panning Sweep (Concept -> Mission -> Experience)
-    masterTl.to(cameraRef.current, {
-      xPercent: 85,
-      yPercent: 45,
-      scale: 1.1,
-      rotate: -5,
-      duration: 4,
-      ease: 'sine.inOut'
-    }, 3)
-    .to(reelRef.current, {
-      xPercent: 5,
-      yPercent: 20,
-      scale: 0.9,
-      rotate: 5,
-      duration: 4,
-      ease: 'sine.inOut'
-    }, 3);
-
-    // 4. Final Deep Perspective & Rotation (Characters -> Movement -> Contact)
-    masterTl.to(cameraRef.current, {
-      xPercent: 10,
-      yPercent: 75,
-      scale: 1.6,
-      rotate: 25,
-      duration: 5,
-      ease: 'power1.inOut'
-    }, 7)
-    .to(reelRef.current, {
-      xPercent: 60,
-      yPercent: 5,
-      scale: 1.8,
-      rotate: -20,
-      duration: 5,
-      ease: 'power1.inOut'
-    }, 7);
+    // ── CONTEXTUAL DIMMING ──────────────────────────────────────────
+    ScrollTrigger.create({
+      trigger: '#section-3',
+      start: 'top center',
+      endTrigger: '#section-7',
+      end: 'bottom center',
+      onEnter: () => gsap.to(cameras, { opacity: 0.15, duration: 1.5, overwrite: 'auto' }),
+      onLeaveBack: () => {
+        cameras.forEach((cam, i) => {
+          gsap.to(cam, { opacity: i === 0 ? 0.6 : 0.35, duration: 1.5, overwrite: 'auto' });
+        });
+      },
+      onLeave: () => gsap.to(cameras, { opacity: 0, duration: 2, overwrite: 'auto' }),
+      onEnterBack: () => gsap.to(cameras, { opacity: 0.15, duration: 1.5, overwrite: 'auto' }),
+    });
 
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Background Layer (Fixed Base) */}
-      <div className="absolute inset-0 z-[-1] bg-[#fdfcff]/30">
-        <Image 
-          src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=2500&auto=format&fit=crop" 
-          alt="Cinematic Base" 
-          fill 
-          className="object-cover opacity-[0.02] grayscale"
-          priority
-        />
+    <div
+      ref={containerRef}
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-transparent"
+    >
+      {/* Starting clusters (will be offset by GSAP randomization) */}
+      <div ref={camRefs[0]} className="absolute top-[20%] left-[10%] w-[330px] z-[-1]">
+        <img src="/animate_camera.png" alt="Main Camera" className="w-full h-auto drop-shadow-2xl" />
       </div>
 
-      {/* 2D Persistent Motion Layer */}
-      <div className="relative w-full h-full">
-        {/* Film Camera (Continuous visibility) */}
-        <div ref={cameraRef} className="absolute w-[350px] md:w-[500px] aspect-square transition-opacity duration-1000 will-change-transform">
-          <Image 
-            src="/camera.png" 
-            alt="Film Camera" 
-            width={500} 
-            height={500} 
-            className="w-full h-full object-contain opacity-25 drop-shadow-[0_40px_100px_rgba(159,129,185,0.12)]"
-          />
-        </div>
+      <div ref={camRefs[1]} className="absolute top-[50%] right-[15%] w-[260px] z-[-2]">
+        <img src="/animate_camera.png" alt="" className="w-full h-auto filter blur-[0.5px] grayscale" />
+      </div>
 
-        {/* Film Reel (Continuous visibility) */}
-        <div ref={reelRef} className="absolute w-[250px] md:w-[400px] aspect-square transition-opacity duration-1000 will-change-transform">
-          <Image 
-            src="/reel.png" 
-            alt="Film Reel" 
-            width={400} 
-            height={400} 
-            className="w-full h-full object-contain opacity-15 drop-shadow-[0_40px_100px_rgba(159,129,185,0.12)]"
-          />
-        </div>
+      <div ref={camRefs[2]} className="absolute bottom-[20%] left-[15%] w-[220px] z-[-2]">
+        <img src="/animate_camera.png" alt="" className="w-full h-auto filter blur-[1px] grayscale opacity-80" />
       </div>
-      
-      {/* Cinematic Overlays */}
-      <div className="gpu-accelerated absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-[#9f81b9]/5 to-transparent opacity-25" />
-      <div className="gpu-accelerated absolute bottom-0 left-0 w-2/3 h-full bg-gradient-to-r from-[#9f81b9]/5 to-transparent opacity-25" />
-      
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-[1]">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-40" />
+
+      <div ref={camRefs[3]} className="absolute top-[10%] right-[30%] w-[180px] z-[-3]">
+        <img src="/animate_camera.png" alt="" className="w-full h-auto filter blur-[1.5px] grayscale opacity-70" />
       </div>
+
+      <div ref={camRefs[4]} className="absolute middle-y left-[30%] w-[140px] z-[-3]">
+        <img src="/animate_camera.png" alt="" className="w-full h-auto filter blur-[2px] grayscale opacity-60" />
+      </div>
+
+      <div ref={camRefs[5]} className="absolute bottom-[30%] right-[35%] w-[130px] z-[-3]">
+        <img src="/animate_camera.png" alt="" className="w-full h-auto filter blur-[2.5px] grayscale opacity-50" />
+      </div>
+
+      {/* Atmospheric grain/glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(159,129,185,0.02)_100%)]" />
     </div>
   );
 }

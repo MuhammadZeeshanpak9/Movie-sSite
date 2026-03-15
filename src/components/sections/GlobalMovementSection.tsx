@@ -71,10 +71,10 @@ export default function GlobalMovementSection() {
           <span className="text-[10px] font-mono text-indigo-400 tracking-[0.6em] mb-8 block uppercase font-black">Live Production Data</span>
           <h2 className="text-6xl md:text-[10.5rem] font-playfair font-black text-slate-900 leading-[0.8] mb-12 tracking-tighter">
             GLOBAL <br />
-            <span className="italic font-light text-[#9f81b9]">REACH.</span>
+            <span className="italic font-light text-[#6a4a8c]">REACH.</span>
           </h2>
           <div className="w-16 h-[1px] bg-indigo-400 mb-8" />
-          <p className="text-lg text-[#9f81b9] font-light leading-relaxed uppercase tracking-widest">
+          <p className="text-lg text-[#6a4a8c] font-light leading-relaxed uppercase tracking-widest">
             The premiere has already started. Across the globe, the narrative is shifting from observation to direction.
           </p>
         </div>

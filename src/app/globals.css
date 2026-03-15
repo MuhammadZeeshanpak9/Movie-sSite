@@ -3,7 +3,7 @@
 @theme {
   --color-indigo-900: #1a103c;
   --color-indigo-800: #2d1b54;
-  --color-indigo-400: #9f81b9;
+  --color-indigo-400: #6a4a8c;
   --color-indigo-200: #d6c5e3;
   
   --font-playfair: "Playfair Display", serif;
@@ -18,7 +18,7 @@
   --foreground-rgb: 15, 23, 42; /* Slate 900 */
   --background-rgb: 255, 255, 255;
   
-  --primary-accent: #9f81b9;
+  --primary-accent: #6a4a8c;
 }
 
 /* Performance & GPU Optimization */

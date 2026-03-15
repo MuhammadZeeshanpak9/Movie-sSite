@@ -66,10 +66,10 @@ export default function TheConceptSection() {
             <span className="text-sm font-mono text-indigo-400 tracking-[0.4em] mb-4 block uppercase font-black">THE NARRATIVE ENGINE</span>
             <h2 className="text-6xl md:text-[8rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
               A STORY <br />
-              <span className="italic font-light text-slate-300">UNFOLDING.</span>
+              <span className="italic font-light text-[#6a4a8c]">UNFOLDING.</span>
             </h2>
           </div>
-          <p className="max-w-xs text-slate-400 font-inter font-light mt-8 md:mt-0 border-l border-slate-100 pl-8 leading-loose uppercase text-[10px] tracking-widest">
+          <p className="max-w-xs text-black font-inter font-light mt-8 md:mt-0 border-l border-slate-100 pl-8 leading-loose uppercase text-[10px] tracking-widest">
             Life is not a series of random events. It’s a carefully crafted film, and you are the protagonist.
           </p>
         </div>
@@ -105,11 +105,11 @@ export default function TheConceptSection() {
                   </h3>
                 </div>
 
-                <p className="text-base font-light text-[#9f81b9] group-hover:text-slate-300 leading-relaxed max-w-[200px]">
+                <p className="text-base font-light text-[#6a4a8c] group-hover:text-slate-300 leading-relaxed max-w-[200px]">
                   {scene.desc}
                 </p>
 
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#9f81b9] group-hover:w-full transition-all duration-1000" />
+                <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#6a4a8c] group-hover:w-full transition-all duration-1000" />
               </div>
             </div>
           ))}

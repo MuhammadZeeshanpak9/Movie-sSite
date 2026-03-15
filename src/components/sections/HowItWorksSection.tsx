@@ -47,7 +47,7 @@ export default function HowItWorksSection() {
           <span className="text-[10px] font-mono text-indigo-400 tracking-[0.6em] mb-6 block uppercase font-black">Strategic Pipeline</span>
           <h2 className="text-6xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
             THE <br />
-            <span className="italic font-light text-[#9f81b9]">PROCESS.</span>
+            <span className="italic font-light text-[#6a4a8c]">PROCESS.</span>
           </h2>
         </div>
 
@@ -67,8 +67,8 @@ export default function HowItWorksSection() {
 
               <div className="relative h-full p-10 flex flex-col justify-end z-10 group-hover:text-white transition-colors duration-500">
                 <div className="flex items-center justify-between mb-8">
-                  <span className="text-xs font-mono text-indigo-400 group-hover:text-indigo-200 font-black tracking-widest">{step.num}</span>
-                  <div className="w-8 h-[1px] bg-indigo-200 group-hover:w-16 group-hover:bg-white transition-all duration-700" />
+                   <span className="text-xs font-mono text-indigo-400 group-hover:text-indigo-200 font-black tracking-widest">{step.num}</span>
+                   <div className="w-8 h-[1px] bg-indigo-200 group-hover:w-16 group-hover:bg-white transition-all duration-700" />
                 </div>
                 
                 <div>
@@ -81,7 +81,7 @@ export default function HowItWorksSection() {
                 </div>
 
                 {/* Progress Bar Accent */}
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#9f81b9] group-hover:w-full transition-all duration-1000" />
+                <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#6a4a8c] group-hover:w-full transition-all duration-1000" />
               </div>
             </div>
           ))}
