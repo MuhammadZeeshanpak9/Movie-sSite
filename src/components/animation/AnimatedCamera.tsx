@@ -9,83 +9,69 @@ gsap.registerPlugin(ScrollTrigger);
 
 /**
  * AnimatedCamera Component
- * Feature: 6 vintage cameras wandering dynamically across the entire screen.
- * They move independently left, right, up, and down to create a "drifting on set" feel.
+ * Feature: Multi-element cinematic background using user-provided cleaned assets.
+ * Cameras, reels, and clapperboards float continuously with parallax depth.
  */
+const ASSETS = [
+  { id: 'asset-1', src: '/user_asset_1.png', depth: 0.9, baseSize: 340, startY: 15, direction: 1 },
+  { id: 'asset-2', src: '/user_asset_2.png', depth: 0.5, baseSize: 260, startY: 45, direction: -1 },
+  { id: 'asset-3', src: '/user_asset_3.png', depth: 0.7, baseSize: 220, startY: 75, direction: 1 },
+  { id: 'asset-4', src: '/user_asset_4.png', depth: 0.3, baseSize: 180, startY: 25, direction: -1 },
+  { id: 'asset-5', src: '/user_asset_5.png', depth: 0.8, baseSize: 280, startY: 55, direction: 1 },
+  { id: 'asset-6', src: '/user_asset_6.png', depth: 0.4, baseSize: 200, startY: 85, direction: -1 },
+];
+
 export default function AnimatedCamera() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Refs for 6 camera instances
-  const camRefs = [
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-  ];
 
   useGSAP(() => {
-    const cameras = camRefs.map(ref => ref.current).filter((el): el is HTMLDivElement => el !== null);
-    if (cameras.length === 0) return;
+    if (!containerRef.current) return;
+    const elements = containerRef.current.querySelectorAll('.floating-asset');
 
-    // ── INITIAL RANDOMIZATION ──────────────────────────────────────
-    cameras.forEach((cam, i) => {
-      // Set randomized start positions and scales
-      gsap.set(cam, {
-        opacity: i === 0 ? 0.6 : 0.35,
-        scale: 1 - (i * 0.1),
-        // Start them scattered across the viewport
-        x: `${Math.random() * 80 - 40}vw`,
-        y: `${Math.random() * 60 - 30}vh`,
+    elements.forEach((el, i) => {
+      const asset = ASSETS[i];
+      // Duration scale: foreground (depth 1) is slower, background (depth 0) is faster
+      const duration = (25 + Math.random() * 15) * asset.depth;
+
+      // ── CONTINUOUS HORIZONTAL FLOAT (INFINITE) ─────────────────────
+      const startX = asset.direction === 1 ? -40 : 140;
+      const endX = asset.direction === 1 ? 140 : -40;
+
+      gsap.set(el, { left: `${startX}%` });
+
+      gsap.to(el, {
+        left: `${endX}%`,
+        duration: duration,
+        ease: 'none',
+        repeat: -1,
+      }).progress(Math.random()); // Random start offset
+
+      // ── ORGANIC DRIFT (vertical & rotation) ────────────────────────
+      gsap.to(el, {
+        y: (i % 2 === 0 ? '+=' : '-=') + (20 + Math.random() * 20) + 'vh',
+        duration: 10 + Math.random() * 10,
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
       });
-    });
 
-    // ── LARGE-SCALE WANDERING (Everywhere on Screen) ──────────────
-    cameras.forEach((cam, i) => {
-      // Independent horizontal wandering
-      gsap.to(cam, {
-        x: (i % 2 === 0) ? `+=${15 + Math.random() * 25}vw` : `-=${15 + Math.random() * 25}vw`,
+      gsap.to(el, {
+        rotation: asset.direction * (20 + Math.random() * 20),
         duration: 8 + Math.random() * 10,
         ease: 'sine.inOut',
         repeat: -1,
         yoyo: true,
       });
 
-      // Independent vertical wandering
-      gsap.to(cam, {
-        y: (i % 3 === 0) ? `+=${15 + Math.random() * 20}vh` : `-=${15 + Math.random() * 20}vh`,
-        duration: 10 + Math.random() * 12,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
-      });
-
-      // Inner image tilt/sway for personality
-      const inner = cam.querySelector('img');
-      if (inner) {
-        gsap.to(inner, {
-          rotate: i % 2 === 0 ? 25 : -25,
-          duration: 5 + Math.random() * 5,
-          ease: 'sine.inOut',
-          repeat: -1,
-          yoyo: true,
-        });
-      }
-    });
-
-    // ── SCROLL-SENSITIVE DEPTH ────────────────────────────────────
-    // Maintains the scroll connection while they wander
-    cameras.forEach((cam, i) => {
-      const depth = 1 - (i * 0.1);
-      gsap.to(cam, {
-        y: `+=${30 * depth}vh`,
+      // ── SCROLL PARALLAX ───────────────────────────────────────────
+      gsap.to(el, {
+        y: `+=${40 * asset.depth}vh`,
         ease: 'none',
         scrollTrigger: {
           trigger: 'body',
           start: 'top top',
           end: 'bottom bottom',
-          scrub: 1.5 + (i * 0.5),
+          scrub: 1.5 + ((1 - asset.depth) * 2),
         },
       });
     });
@@ -96,14 +82,14 @@ export default function AnimatedCamera() {
       start: 'top center',
       endTrigger: '#section-7',
       end: 'bottom center',
-      onEnter: () => gsap.to(cameras, { opacity: 0.15, duration: 1.5, overwrite: 'auto' }),
+      onEnter: () => gsap.to(elements, { opacity: 0.1, duration: 1.5, overwrite: 'auto' }),
       onLeaveBack: () => {
-        cameras.forEach((cam, i) => {
-          gsap.to(cam, { opacity: i === 0 ? 0.6 : 0.35, duration: 1.5, overwrite: 'auto' });
+        elements.forEach((el, i) => {
+          gsap.to(el, { opacity: ASSETS[i].depth > 0.6 ? 0.6 : 0.4, duration: 1.5, overwrite: 'auto' });
         });
       },
-      onLeave: () => gsap.to(cameras, { opacity: 0, duration: 2, overwrite: 'auto' }),
-      onEnterBack: () => gsap.to(cameras, { opacity: 0.15, duration: 1.5, overwrite: 'auto' }),
+      onLeave: () => gsap.to(elements, { opacity: 0, duration: 2, overwrite: 'auto' }),
+      onEnterBack: () => gsap.to(elements, { opacity: 0.1, duration: 1.5, overwrite: 'auto' }),
     });
 
   }, { scope: containerRef });
@@ -113,33 +99,28 @@ export default function AnimatedCamera() {
       ref={containerRef}
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-transparent"
     >
-      {/* Starting clusters (will be offset by GSAP randomization) */}
-      <div ref={camRefs[0]} className="absolute top-[20%] left-[10%] w-[330px] z-[-1]">
-        <img src="/animate_camera.png" alt="Main Camera" className="w-full h-auto drop-shadow-2xl" />
-      </div>
-
-      <div ref={camRefs[1]} className="absolute top-[50%] right-[15%] w-[260px] z-[-2]">
-        <img src="/animate_camera.png" alt="" className="w-full h-auto filter blur-[0.5px] grayscale" />
-      </div>
-
-      <div ref={camRefs[2]} className="absolute bottom-[20%] left-[15%] w-[220px] z-[-2]">
-        <img src="/animate_camera.png" alt="" className="w-full h-auto filter blur-[1px] grayscale opacity-80" />
-      </div>
-
-      <div ref={camRefs[3]} className="absolute top-[10%] right-[30%] w-[180px] z-[-3]">
-        <img src="/animate_camera.png" alt="" className="w-full h-auto filter blur-[1.5px] grayscale opacity-70" />
-      </div>
-
-      <div ref={camRefs[4]} className="absolute middle-y left-[30%] w-[140px] z-[-3]">
-        <img src="/animate_camera.png" alt="" className="w-full h-auto filter blur-[2px] grayscale opacity-60" />
-      </div>
-
-      <div ref={camRefs[5]} className="absolute bottom-[30%] right-[35%] w-[130px] z-[-3]">
-        <img src="/animate_camera.png" alt="" className="w-full h-auto filter blur-[2.5px] grayscale opacity-50" />
-      </div>
+      {ASSETS.map((asset) => (
+        <div
+          key={asset.id}
+          className="floating-asset absolute will-change-transform"
+          style={{
+            top: `${asset.startY}%`,
+            width: `${asset.baseSize}px`,
+            opacity: asset.depth > 0.6 ? 0.6 : 0.4,
+            zIndex: Math.floor(asset.depth * -10),
+            filter: asset.depth < 0.5 ? `blur(${(0.5 - asset.depth) * 10}px) grayscale(0.5)` : 'none',
+          }}
+        >
+          <img
+            src={asset.src}
+            alt=""
+            className="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
+          />
+        </div>
+      ))}
 
       {/* Atmospheric grain/glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(159,129,185,0.02)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(106,74,140,0.02)_100%)]" />
     </div>
   );
 }

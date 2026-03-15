@@ -20,7 +20,7 @@ export default function HeroSection() {
     });
 
     masterTl.to('.hero-parallax-bg', { y: 150, scale: 1.05, ease: 'none' })
-            .to('.hero-content', { y: -50, opacity: 0.8, ease: 'none' }, 0);
+      .to('.hero-content', { y: -50, opacity: 0.8, ease: 'none' }, 0);
 
     // Entrance with Cinematic Reveal Rhythm
     const entranceTl = gsap.timeline({ delay: 0.5 });
@@ -37,10 +37,10 @@ export default function HeroSection() {
     <section ref={containerRef} className="relative w-full pt-40 pb-24 md:min-h-screen flex flex-col justify-center px-8 md:px-24 z-10 overflow-hidden bg-transparent">
       {/* Local Vintage Camera Background */}
       <div className="hero-parallax-bg gpu-accelerated absolute inset-0 z-[-1] opacity-80 transition-all duration-1000">
-        <Image 
-          src="/hero_bg_camera.png" 
-          alt="Vintage Film Camera Background" 
-          fill 
+        <Image
+          src="/hero_bg_camera_clean.png"
+          alt="Vintage Film Camera Background"
+          fill
           className="object-cover"
           priority
         />
@@ -54,7 +54,7 @@ export default function HeroSection() {
           <div className="w-12 h-[1px] bg-indigo-400" />
           <span className="text-xs font-mono tracking-[0.5em] text-indigo-400 uppercase font-black">PROTAGONIST SYSTEM v3.0</span>
         </div>
-        
+
         <div className="hero-reveal relative mb-12">
           <h1 className="text-5xl md:text-[7rem] font-playfair font-black text-slate-900 leading-[0.95] tracking-tighter">
             THE WORLD&apos;S <br />
