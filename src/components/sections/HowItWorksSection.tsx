@@ -41,9 +41,9 @@ export default function HowItWorksSection() {
   }, { scope: containerRef });
   
   return (
-    <section ref={containerRef} className="relative w-full py-60 px-8 z-10 bg-transparent overflow-hidden">
+    <section ref={containerRef} className="relative w-full py-24 md:py-60 px-8 z-10 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="how-header mb-40">
+        <div className="how-header mb-20 md:mb-40">
           <span className="text-[10px] font-mono text-indigo-400 tracking-[0.6em] mb-6 block uppercase font-black">Strategic Pipeline</span>
           <h2 className="text-6xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
             THE <br />
@@ -53,7 +53,7 @@ export default function HowItWorksSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {STEPS.map((step) => (
-            <div key={step.num} className="how-step gpu-accelerated flex flex-col group relative h-[500px] overflow-hidden border border-slate-50 bg-slate-50">
+            <div key={step.num} className="how-step gpu-accelerated flex flex-col group relative h-[400px] md:h-[500px] overflow-hidden border border-slate-50 bg-slate-50">
               {/* Cinematic Image Frame */}
               <div className="absolute inset-0 z-0 overflow-hidden">
                 <Image 

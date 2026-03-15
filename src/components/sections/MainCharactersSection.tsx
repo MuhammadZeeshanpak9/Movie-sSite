@@ -41,9 +41,9 @@ export default function MainCharactersSection() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full py-60 px-8 md:px-24 z-10 bg-transparent overflow-hidden">
+    <section ref={containerRef} className="relative w-full py-24 md:py-60 px-8 md:px-24 z-10 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="character-header mb-32 flex flex-col md:flex-row md:items-end justify-between">
+        <div className="character-header mb-16 md:mb-32 flex flex-col md:flex-row md:items-end justify-between">
           <div className="max-w-2xl">
             <span className="text-xs font-mono text-indigo-400 tracking-[1em] mb-4 block uppercase font-black">THE ENSEMBLE</span>
             <h2 className="text-6xl md:text-[8rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
@@ -86,7 +86,7 @@ function CharacterCard({ name, role, quote, index, image }: { name: string; role
       ref={cardRef}
       onMouseEnter={() => tlRef.current?.play()}
       onMouseLeave={() => tlRef.current?.reverse()}
-      className="character-card gpu-accelerated group relative h-[600px] bg-slate-50 overflow-hidden border border-slate-100"
+      className="character-card gpu-accelerated group relative h-[500px] md:h-[600px] bg-slate-50 overflow-hidden border border-slate-100"
     >
       <div className="char-img absolute inset-0 z-0">
         <Image 

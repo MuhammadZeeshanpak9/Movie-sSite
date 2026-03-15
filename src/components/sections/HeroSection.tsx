@@ -34,7 +34,7 @@ export default function HeroSection() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full min-h-screen flex flex-col justify-center px-8 md:px-24 z-10 overflow-hidden bg-transparent">
+    <section ref={containerRef} className="relative w-full pt-40 pb-24 md:min-h-screen flex flex-col justify-center px-8 md:px-24 z-10 overflow-hidden bg-transparent">
       {/* Background Image Overlay */}
       <div className="hero-parallax-bg gpu-accelerated absolute inset-0 z-[-1] opacity-60">
         <Image 

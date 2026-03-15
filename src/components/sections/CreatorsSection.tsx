@@ -40,9 +40,9 @@ export default function CreatorsSection() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full py-60 px-8 z-10 bg-transparent">
+    <section ref={containerRef} className="relative w-full py-24 md:py-60 px-8 z-10 bg-transparent">
       <div className="max-w-7xl mx-auto">
-        <div className="creators-header mb-32 flex flex-col md:flex-row md:items-end justify-between">
+        <div className="creators-header mb-16 md:mb-32 flex flex-col md:flex-row md:items-end justify-between">
           <div className="max-w-2xl">
             <span className="text-xs font-mono text-indigo-400 tracking-[1em] mb-4 block uppercase font-black">THE ARCHITECTS</span>
             <h2 className="text-6xl md:text-[8rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter uppercase">

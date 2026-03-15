@@ -47,12 +47,12 @@ export default function OurMissionSection() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full min-h-screen py-60 px-8 flex flex-col items-center justify-center overflow-hidden bg-transparent">
-      <div className="max-w-7xl z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-40 items-center">
+    <section ref={containerRef} className="relative w-full py-24 md:py-60 px-8 flex flex-col items-center justify-center overflow-hidden bg-transparent">
+      <div className="max-w-7xl z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-20 md:gap-40 items-center">
         {/* Cinematic Typography Side */}
         <div className="mission-content gpu-accelerated">
           <span className="text-[10px] font-mono text-indigo-400 tracking-[0.6em] mb-8 block uppercase font-black">Strategic Intent</span>
-          <h2 className="text-7xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] mb-12 tracking-tighter">
+          <h2 className="text-6xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] mb-12 tracking-tighter">
             BEYOND <br />
             <span className="italic font-light text-slate-300">THE REEL.</span>
           </h2>
@@ -92,7 +92,7 @@ export default function OurMissionSection() {
             <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(159,129,185,0.02)_50%)] bg-[length:100%_4px] pointer-events-none" />
           </div>
           
-          <div className="absolute -bottom-16 -left-16 bg-white p-12 max-w-sm shadow-[0_50px_100px_rgba(0,0,0,0.08)] border border-slate-50">
+          <div className="absolute -bottom-16 -left-16 bg-white p-12 max-w-sm shadow-[0_50px_100px_rgba(0,0,0,0.08)] border border-slate-50 hidden sm:block">
               <h4 className="text-3xl font-playfair font-black text-slate-900 mb-6 italic">The Director’s Cut</h4>
               <p className="text-sm font-light text-slate-500 leading-relaxed uppercase tracking-widest">
                 When you dictate your story, you change the world. You are the final authority of your own production.

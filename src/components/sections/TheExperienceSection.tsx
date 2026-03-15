@@ -55,9 +55,9 @@ export default function TheExperienceSection() {
   }, { scope: containerRef });
   
   return (
-    <section ref={containerRef} className="relative w-full py-60 px-8 flex flex-col items-center z-10 overflow-hidden bg-transparent">
+    <section ref={containerRef} className="relative w-full py-24 md:py-60 px-8 flex flex-col items-center z-10 overflow-hidden bg-transparent">
       {/* Large Cinematic Header */}
-      <div className="exp-title max-w-7xl w-full mb-40">
+      <div className="exp-title max-w-7xl w-full mb-20 md:mb-40">
         <span className="text-indigo-400 font-mono tracking-[0.6em] text-[10px] block mb-6 font-black uppercase">Technical Mastery</span>
         <h2 className="text-6xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
           THE <br />
@@ -66,7 +66,7 @@ export default function TheExperienceSection() {
       </div>
 
       {/* Cinematic Rows */}
-      <div className="max-w-7xl w-full flex flex-col gap-60">
+      <div className="max-w-7xl w-full flex flex-col gap-24 md:gap-60">
         {EXPERIENCES.map((exp, i) => (
           <ExperienceRow key={i} {...exp} index={i} />
         ))}

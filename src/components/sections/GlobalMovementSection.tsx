@@ -64,8 +64,8 @@ export default function GlobalMovementSection() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="gpu-accelerated relative w-full py-60 px-8 z-10 overflow-hidden bg-transparent">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-24">
+    <section ref={containerRef} className="gpu-accelerated relative w-full py-24 md:py-60 px-8 z-10 overflow-hidden bg-transparent">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-12 md:gap-24">
         
         <div className="movement-title gpu-accelerated max-w-2xl">
           <span className="text-[10px] font-mono text-indigo-400 tracking-[0.6em] mb-8 block uppercase font-black">Live Production Data</span>

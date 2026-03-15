@@ -33,13 +33,13 @@ export default function ContactSection() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full py-60 flex flex-col items-center justify-center px-8 z-10 bg-transparent">
-      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-40 items-start">
+    <section ref={containerRef} className="relative w-full py-24 md:py-60 flex flex-col items-center justify-center px-8 z-10 bg-transparent">
+      <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-20 md:gap-40 items-start">
         
         {/* Final Statement */}
         <div className="contact-content">
           <span className="text-[10px] font-mono text-indigo-400 tracking-[0.6em] mb-8 block uppercase font-black">Open Call</span>
-          <h2 className="text-7xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] mb-12 tracking-tighter">
+          <h2 className="text-6xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] mb-12 tracking-tighter">
             JOIN THE <br />
             <span className="italic font-light text-slate-300">SCENE.</span>
           </h2>
@@ -91,7 +91,7 @@ export default function ContactSection() {
       </div>
 
       {/* Footer Text */}
-      <div className="mt-80 flex flex-col md:flex-row justify-between w-full max-w-7xl pt-16 border-t border-slate-100 opacity-40 text-[10px] font-mono tracking-[0.6em] uppercase font-black">
+      <div className="mt-40 md:mt-80 flex flex-col md:flex-row justify-between w-full max-w-7xl pt-16 border-t border-slate-100 opacity-40 text-[10px] font-mono tracking-[0.6em] uppercase font-black">
         <span>© {new Date().getFullYear()} PROTAGONIST STUDIO</span>
         <span>A PRECISE NARRATIVE PRODUCTION</span>
       </div>

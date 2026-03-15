@@ -58,10 +58,10 @@ export default function TheConceptSection() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="gpu-accelerated relative w-full py-60 flex flex-col items-center justify-center px-8 z-10 bg-transparent">
+    <section ref={containerRef} className="gpu-accelerated relative w-full py-24 md:py-60 flex flex-col items-center justify-center px-8 z-10 bg-transparent">
       <div className="max-w-7xl w-full">
         {/* Section Title */}
-        <div className="concept-header mb-32 flex flex-col md:flex-row md:items-end justify-between">
+        <div className="concept-header mb-16 md:mb-32 flex flex-col md:flex-row md:items-end justify-between">
           <div className="max-w-2xl">
             <span className="text-sm font-mono text-indigo-400 tracking-[0.4em] mb-4 block uppercase font-black">THE NARRATIVE ENGINE</span>
             <h2 className="text-6xl md:text-[8rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
@@ -77,7 +77,7 @@ export default function TheConceptSection() {
         {/* Storyboard Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 group/container">
           {SCENES.map((scene) => (
-            <div key={scene.id} className="concept-card group relative h-[600px] overflow-hidden">
+            <div key={scene.id} className="concept-card group relative h-[450px] md:h-[600px] overflow-hidden">
               {/* Background Image */}
               <div className="absolute inset-0 z-0 transition-transform duration-1000 group-hover:scale-110">
                 <Image 
