@@ -96,29 +96,6 @@ export default function AnimatedCamera() {
 
     window.addEventListener('mousemove', handleMouseMove);
 
-    // ── SECTION-BASED FOCUS SHIFTS ──────────────────────────────────
-    ScrollTrigger.create({
-      trigger: '#section-3',
-      start: 'top center',
-      end: 'bottom bottom',
-      onEnter: () => gsap.to(elements, { 
-        opacity: (i) => ASSETS[i].depth > 0.7 ? 0.15 : 0.08, 
-        filter: (i) => `blur(${ASSETS[i].blurScale * 2}px) grayscale(0.8)`, 
-        duration: 2 
-      }),
-      onLeaveBack: () => {
-        elements.forEach((el, i) => {
-          const asset = ASSETS[i];
-          gsap.to(el, { 
-            opacity: asset.depth > 0.6 ? 0.7 : 0.5, 
-            filter: `blur(${asset.blurScale}px) grayscale(0)`,
-            duration: 2 
-          });
-        });
-      },
-      onLeave: () => gsap.to(elements, { opacity: 0, duration: 2.5, overwrite: 'auto' }),
-      onEnterBack: () => gsap.to(elements, { opacity: 0.1, duration: 1.5, overwrite: 'auto' }),
-    });
 
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, { scope: containerRef });

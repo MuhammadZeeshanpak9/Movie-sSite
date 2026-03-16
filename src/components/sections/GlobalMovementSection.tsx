@@ -15,7 +15,7 @@ function Counter({ end, label }: { end: number; label: string }) {
       scrollTrigger: {
         trigger: ref.current,
         start: 'top 90%',
-        toggleActions: 'play none none reverse'
+        toggleActions: 'play none none none',
       },
       onUpdate: function() {
         setCount(Math.floor(this.targets()[0].val));

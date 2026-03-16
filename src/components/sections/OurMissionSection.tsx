@@ -14,7 +14,7 @@ export default function OurMissionSection() {
         trigger: containerRef.current,
         start: 'top 70%',
         end: 'bottom 20%',
-        toggleActions: 'play none none reverse',
+        toggleActions: 'play none none none',
       }
     });
 
@@ -76,9 +76,13 @@ export default function OurMissionSection() {
                </span>
             </button>
 
+            <div className="flex items-center gap-4 bg-white/5 border border-[#6a4a8c]/10 px-6 py-2 rounded-full mb-12 animate-pulse">
+              <div className="w-2 h-2 bg-[#6a4a8c] rounded-full" />
+              <span className="text-[10px] font-mono font-black text-[#6a4a8c] tracking-widest uppercase">LIVE PREMIERE: 195 NATIONS</span>
+            </div>
             <div className="flex flex-col border-l border-slate-100 pl-12">
               <span className="text-[9px] font-mono text-[#6a4a8c]/40 mb-2 tracking-[0.4em] uppercase font-black">GLOBAL IMPACT</span>
-              <span className="text-4xl font-playfair font-black text-slate-900 uppercase tracking-tighter">89 NATIONS</span>
+              <span className="text-4xl font-playfair font-black text-slate-900 uppercase tracking-tighter">195 NATIONS</span>
             </div>
           </div>
         </div>
@@ -87,12 +91,12 @@ export default function OurMissionSection() {
         <div className="mission-visual gpu-accelerated relative">
           <div className="mission-visual-inner gpu-accelerated aspect-[4/5] bg-slate-50 relative overflow-hidden border border-slate-50 group shadow-[0_60px_120px_rgba(0,0,0,0.05)]">
             <div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-105">
-               <Image 
-                 src="https://images.unsplash.com/photo-1533107862482-0e6974b06ec4?q=80&w=2000&auto=format&fit=crop" 
-                 alt="Cinematic Hardware Silhouette" 
-                 fill 
-                 className="object-cover"
-               />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/images/mission_img.png"
+                  alt="Cinematic Hardware Silhouette"
+                  className="w-full h-full object-cover"
+                />
                <div className="absolute inset-0 bg-[#6a4a8c]/5 group-hover:bg-transparent transition-colors duration-700" />
             </div>
             {/* Cinematic Scanline Overlay */}

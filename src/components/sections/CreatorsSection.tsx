@@ -1,14 +1,13 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 const CREATORS = [
-  { name: 'ELENA ROSTOVA', role: 'EXECUTIVE PRODUCER', desc: 'Crafting the frameworks that make your story unignorable.', image: 'https://images.unsplash.com/photo-1563237023-b1e970526dcb?q=80&w=1000&auto=format&fit=crop' },
-  { name: 'MARCUS FINCH', role: 'DIRECTOR OF EXPERIENCES', desc: 'Ensuring every micro-interaction feels like a pivotal scene.', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop' },
-  { name: 'SARAH CHEN', role: 'LEAD NARRATOLOGIST', desc: 'Structuring your chaos into a compelling character arc.', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop' },
+  { name: 'LUCAH TGD', role: 'CREATIVE DIRECTOR', desc: 'Crafting the frameworks that make your story unignorable.', image: '/assets/images/lucah-tgd.jpg' },
+  { name: 'TGD', role: 'PRODUCER', desc: 'Ensuring every micro-interaction feels like a pivotal scene.', image: '/assets/images/tgd-producer.png' },
+  { name: 'RENA CHAMP', role: 'DIRECTOR', desc: 'Structuring your chaos into a compelling character arc.', image: '/assets/images/rena-champ.jpg' },
 ];
 
 export default function CreatorsSection() {
@@ -19,7 +18,7 @@ export default function CreatorsSection() {
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top 75%',
-        toggleActions: 'play none none reverse',
+        toggleActions: 'play none none none',
       }
     });
 
@@ -136,11 +135,11 @@ function CreatorCard({ char, index }: { char: typeof CREATORS[0], index: number 
         className="relative w-full h-full preserve-3d transition-transform duration-500 ease-out will-change-transform glass-card border border-[#6a4a8c]/5"
       >
         <div className="relative aspect-[1/1.2] overflow-hidden">
-          <Image 
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img 
             src={char.image} 
             alt={char.name} 
-            fill 
-            className="object-cover transition-all duration-1500 group-hover:scale-105 ease-cinematic" 
+            className="w-full h-full object-cover transition-all duration-1500 group-hover:scale-105 ease-cinematic" 
           />
           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
         </div>

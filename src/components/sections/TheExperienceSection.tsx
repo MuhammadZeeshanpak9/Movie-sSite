@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -10,19 +9,19 @@ const EXPERIENCES = [
     title: 'THE PROTAGONIST',
     desc: 'You are no longer an observer. In this narrative, every action you take ripples through the scenes of your existence.',
     label: 'SCENE 01',
-    image: 'https://images.unsplash.com/photo-1542204113-e93526286435?q=80&w=1000&auto=format&fit=crop'
+    image: '/assets/images/hero_bg.png'
   },
   {
     title: 'THE DIRECTOR',
     desc: 'Take the chair. Shape the environment, choose the cast, and decide where the lens focuses next.',
     label: 'SCENE 02',
-    image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1000&auto=format&fit=crop'
+    image: '/assets/images/mission_img.png'
   },
   {
     title: 'THE EPIC',
     desc: 'Your life isn’t a short film. It’s a multi-arc saga with no limits on the final act.',
     label: 'SCENE 03',
-    image: 'https://images.unsplash.com/photo-1512113569143-146959b3bc2f?q=80&w=1000&auto=format&fit=crop'
+    image: '/assets/images/the-epic.png'
   },
 ];
 
@@ -34,7 +33,7 @@ export default function TheExperienceSection() {
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top 75%',
-        toggleActions: 'play none none reverse',
+        toggleActions: 'play none none none',
       }
     });
 
@@ -96,11 +95,11 @@ function ExperienceRow({ title, desc, label, index, image }: { title: string; de
       {/* Visual Frame */}
       <div className="flex-1 w-full aspect-[16/10] bg-slate-50 relative overflow-hidden group shadow-[0_40px_80px_rgba(0,0,0,0.05)] cursor-pointer glass-card border border-[#6a4a8c]/5">
         <div className="absolute inset-0 z-0 transition-transform duration-1000 group-hover:scale-105">
-           <Image 
+           {/* eslint-disable-next-line @next/next/no-img-element */}
+           <img 
              src={image} 
              alt={title} 
-             fill 
-             className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 ease-cinematic"
+             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 ease-cinematic"
            />
            <div className="absolute inset-0 bg-white/10 group-hover:bg-transparent transition-colors duration-700" />
         </div>

@@ -1,15 +1,14 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 const STEPS = [
-  { num: '01', title: 'CLAIM THE ROLE', desc: 'Step onto the set. The world is built, the lighting is set, but the chair is empty.', image: 'https://images.unsplash.com/photo-1485090958803-84cbdaba9d8e?q=80&w=1000&auto=format&fit=crop' },
-  { num: '02', title: 'DISCOVER THE ARC', desc: 'Identify the narrative beats that have shaped you. The patterns are there if you look.', image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1000&auto=format&fit=crop' },
-  { num: '03', title: 'FORGE THE SCRIPT', desc: 'Take control of the dialogue. Rewrite the scenes that no longer serve the epic.', image: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed0963c?q=80&w=1000&auto=format&fit=crop' },
-  { num: '04', title: 'CALL ACTION', desc: 'Live the movie. Every decision is a masterclass in intentionality.', image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1000&auto=format&fit=crop' },
+  { num: '01', title: 'CLAIM THE ROLE', desc: 'Step onto the set. The world is built, the lighting is set, but the chair is empty.', image: '/bg_anim_1.png' },
+  { num: '02', title: 'DISCOVER THE ARC', desc: 'Identify the narrative beats that have shaped you. The patterns are there if you look.', image: '/bg_anim_2.png' },
+  { num: '03', title: 'FORGE THE SCRIPT', desc: 'Take control of the dialogue. Rewrite the scenes that no longer serve the epic.', image: '/bg_anim_3.png' },
+  { num: '04', title: 'CALL ACTION', desc: 'Live the movie. Every decision is a masterclass in intentionality.', image: '/bg_anim_4.png' },
 ];
 
 export default function HowItWorksSection() {
@@ -20,7 +19,7 @@ export default function HowItWorksSection() {
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top 75%',
-        toggleActions: 'play none none reverse',
+        toggleActions: 'play none none none',
       }
     });
 
@@ -32,16 +31,15 @@ export default function HowItWorksSection() {
       ease: 'power4.out'
     });
 
-    // Staggered Steps Entrance
     gsap.from('.how-step', {
       opacity: 0,
-      x: (i) => i % 2 === 0 ? -50 : 50,
-      duration: 1.5,
+      y: 40,
+      duration: 1.2,
       stagger: 0.1,
       ease: 'expo.out',
       scrollTrigger: {
         trigger: '.how-grid',
-        start: 'top 85%',
+        start: 'top bottom', // fires as soon as grid enters viewport
       }
     });
   }, { scope: containerRef });
@@ -64,11 +62,11 @@ export default function HowItWorksSection() {
             <div key={step.num} className="how-step group relative h-[400px] md:h-[550px] overflow-hidden glass-card border border-[#6a4a8c]/5">
               {/* Cinematic Image Frame */}
               <div className="absolute inset-0 z-0 overflow-hidden">
-                <Image 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src={step.image} 
                   alt={step.title} 
-                  fill 
-                  className="object-cover transition-all duration-1500 group-hover:scale-110 ease-cinematic" 
+                  className="w-full h-full object-cover transition-all duration-1500 group-hover:scale-110 ease-cinematic" 
                 />
                 <div className="absolute inset-0 bg-white/10 group-hover:bg-[#6a4a8c]/90 transition-colors duration-1000" />
               </div>

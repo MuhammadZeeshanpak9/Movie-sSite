@@ -1,15 +1,15 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 const CHARACTERS = [
-  { id: '01', name: 'THE IDLE', role: 'PROTAGONIST', quote: 'I am the master of my fate, I am the captain of my soul.', image: '/char_idle.png' },
-  { id: '02', name: 'SERAPHINA', role: 'ANTAGONIST', quote: 'Every story needs a villain, but even villains have a heart.', image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1000&auto=format&fit=crop' },
-  { id: '03', name: 'ELIAS VANE', role: 'THE MENTOR', quote: 'Your legacy is built one scene at a time.', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop' },
-  { id: '04', name: 'KAIROS', role: 'THE SHADOW', quote: 'Sometimes the strongest light casting the deepest shadow.', image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop' },
+  { id: '01', name: '', role: 'PROTAGONIST', quote: 'I am the master of my fate, I am the captain of my soul.', image: '/assets/images/creator_designer.png' },
+  { id: '02', name: 'RENA CHAMP', role: 'DIRECTOR', quote: 'Every story needs a visionary to bring the light into the darkness.', image: '/assets/images/rena-champ.jpg' },
+  { id: '03', name: 'TGD', role: 'PRODUCER', quote: 'The architecture of a masterpiece is built on sound production.', image: '/assets/images/tgd-producer.png' },
+  { id: '04', name: 'LUCAH TGD', role: 'CREATIVE DIRECTOR', quote: 'Aesthetic is the soul of the cinematic experience.', image: '/assets/images/lucah-tgd.jpg' },
+  { id: '05', name: '', role: 'SCREENWRITER', quote: 'Words are the blueprint of reality. We write the world into existence.', image: '/assets/images/creator_screenwriter.png' },
 ];
 
 export default function MainCharactersSection() {
@@ -20,7 +20,7 @@ export default function MainCharactersSection() {
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top 75%',
-        toggleActions: 'play none none reverse',
+        toggleActions: 'play none none none',
       }
     });
 
@@ -30,20 +30,6 @@ export default function MainCharactersSection() {
       duration: 1.2,
       stagger: 0.15,
       ease: 'power4.out'
-    });
-
-    // Grid entrance
-    gsap.from('.character-card', {
-      opacity: 0,
-      scale: 0.9,
-      y: 100,
-      stagger: 0.1,
-      duration: 1.5,
-      ease: 'expo.out',
-      scrollTrigger: {
-        trigger: '.char-grid',
-        start: 'top 80%',
-      }
     });
   }, { scope: containerRef });
 
@@ -67,7 +53,7 @@ export default function MainCharactersSection() {
         </div>
 
         {/* Characters Grid */}
-        <div className="char-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="char-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
           {CHARACTERS.map((char, i) => (
             <CharacterCard key={char.id} {...char} index={i} />
           ))}
@@ -88,19 +74,19 @@ function CharacterCard({ name, role, quote, index, image }: { name: string; role
     
     // Shrinking and Exposing Entrance Effect
     gsap.fromTo(card, {
-      scale: 1.5,
+      scale: 1.05,
       opacity: 0,
-      clipPath: 'inset(10% 10% 10% 10%)'
+      y: 30,
     }, {
       scale: 1,
       opacity: 1,
-      clipPath: 'inset(0% 0% 0% 0%)',
-      duration: 1.5,
+      y: 0,
+      duration: 1.2,
       ease: 'expo.out',
       scrollTrigger: {
         trigger: card,
-        start: 'top 95%',
-        toggleActions: 'play none none reverse'
+        start: 'top bottom', // fires as soon as top of card enters viewport
+        toggleActions: 'play none none none'
       }
     });
 
@@ -170,11 +156,11 @@ function CharacterCard({ name, role, quote, index, image }: { name: string; role
 
         {/* Background Image - Now Clear */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <Image 
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img 
             src={image} 
             alt={name} 
-            fill 
-            className="object-cover group-hover:scale-105 transition-all duration-1500 ease-cinematic"
+            className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1500 ease-cinematic"
           />
           {/* Subtle bottom shadow only on hover for text contrast */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -184,13 +170,15 @@ function CharacterCard({ name, role, quote, index, image }: { name: string; role
         <div className="relative h-full p-12 flex flex-col justify-end z-10 translate-z-[60px]">
           <div className="mb-8">
             <span className="text-[9px] font-mono text-[#6a4a8c] tracking-[0.6em] font-black block mb-4">
-              0{index + 1} // {role}
+              {index + 1 < 10 ? `0${index + 1}` : index + 1} // {role}
             </span>
-            <h3 className="text-3xl md:text-4xl font-playfair font-black text-slate-900 leading-[0.85] uppercase group-hover:text-white transition-colors duration-500">
-              {name.split(' ').map((word, i) => (
-                <span key={i} className="block">{word}</span>
-              ))}
-            </h3>
+            {name && (
+              <h3 className="text-3xl md:text-2xl xl:text-3xl font-playfair font-black text-slate-900 leading-[0.85] uppercase group-hover:text-white transition-colors duration-500">
+                {name.split(' ').map((word, i) => (
+                  <span key={i} className="block">{word}</span>
+                ))}
+              </h3>
+            )}
           </div>
 
           <div className="max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-1000 ease-soft translate-z-[40px]">

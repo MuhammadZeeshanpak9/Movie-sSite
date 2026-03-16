@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
+
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -11,7 +11,7 @@ const SCENES = [
     title: 'THE INCITING INCIDENT',
     desc: 'The moment your old world crumbles to make room for the new masterpiece.',
     time: 'ACT I',
-    image: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1000&auto=format&fit=crop'
+    image: '/assets/images/the-inciting-incident.png'
   },
   {
     id: '02',
@@ -59,7 +59,7 @@ export default function TheConceptSection() {
       scrollTrigger: {
         trigger: '.concept-grid',
         start: 'top 85%',
-        toggleActions: 'play none none reverse'
+        toggleActions: 'play none none none'
       }
     });
   }, { scope: containerRef });
@@ -91,11 +91,11 @@ export default function TheConceptSection() {
               className="concept-card group relative h-[400px] md:h-[550px] overflow-hidden glass-card"
             >
               <div className="absolute inset-0 z-0 transition-transform duration-1000 group-hover:scale-105">
-                <Image 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src={scene.image} 
                   alt={scene.title} 
-                  fill 
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-white/10 group-hover:bg-[#6a4a8c]/90 transition-colors duration-700" />
               </div>

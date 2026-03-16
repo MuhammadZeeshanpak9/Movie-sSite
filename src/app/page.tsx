@@ -3,6 +3,7 @@
 import React from 'react';
 import AnimatedCamera from '@/components/animation/AnimatedCamera';
 import MovieSetBackground from '@/components/animation/MovieSetBackground';
+import AnimatedBackground from '@/components/animation/AnimatedBackground';
 
 import HeroSection from '@/components/sections/HeroSection';
 import TheConceptSection from '@/components/sections/TheConceptSection';
@@ -17,9 +18,15 @@ import ContactSection from '@/components/sections/ContactSection';
 export default function Home() {
   return (
     <main className="relative w-full text-slate-900 bg-transparent selection:bg-indigo-400/30">
-      {/* 2D Animated Background Layer */}
+      {/* Background Layers — deepest to shallowest */}
       <MovieSetBackground />
-      <AnimatedCamera />
+      {/* Hydration-safe particle layer — renders after mount only */}
+      <div className="fixed inset-0 z-[-1] pointer-events-none">
+        <AnimatedBackground />
+      </div>
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <AnimatedCamera />
+      </div>
 
       {/* Foreground Scrolling HTML Content */}
       <div id="scroll-container" className="relative z-10 w-full flex flex-col">

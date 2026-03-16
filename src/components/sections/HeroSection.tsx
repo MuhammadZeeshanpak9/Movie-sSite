@@ -115,9 +115,8 @@ export default function HeroSection() {
         </div>
 
         <div className="hero-reveal-line max-w-xl mb-20 overflow-hidden">
-          <p className="text-lg md:text-xl font-inter font-light text-[#6a4a8c]/80 leading-relaxed uppercase tracking-[0.2em]">
-            A cinematic experience designed for those who <br />
-            demand <span className="text-[#6a4a8c] font-black underline decoration-1 underline-offset-4">visual excellence</span>.
+          <p className="hero-reveal text-sm md:text-base font-inter font-light text-slate-900 uppercase tracking-[0.3em] leading-relaxed max-w-xl mb-16">
+            A CINEMATIC EXPERIENCE FROM THE DEPTH OF MY MIND FOR MY PHYSICAL LIFE EXPERIENCE WITH VISUAL EXCELLENCE
           </p>
         </div>
 
