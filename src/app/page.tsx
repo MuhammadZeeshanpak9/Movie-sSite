@@ -13,6 +13,7 @@ import MainCharactersSection from '@/components/sections/MainCharactersSection';
 import HowItWorksSection from '@/components/sections/HowItWorksSection';
 import CreatorsSection from '@/components/sections/CreatorsSection';
 import GlobalMovementSection from '@/components/sections/GlobalMovementSection';
+import BookingSection from '@/components/sections/BookingSection';
 import ContactSection from '@/components/sections/ContactSection';
 
 export default function Home() {
@@ -64,7 +65,11 @@ export default function Home() {
           <GlobalMovementSection />
         </div>
 
-        <div id="section-9" className="bg-transparent shadow-[0_-50px_100px_rgba(0,0,0,0.02)]">
+        <div id="section-9" className="border-t border-slate-100/50">
+          <BookingSection />
+        </div>
+
+        <div id="section-10" className="bg-transparent shadow-[0_-50px_100px_rgba(0,0,0,0.02)]">
           <ContactSection />
         </div>
 
