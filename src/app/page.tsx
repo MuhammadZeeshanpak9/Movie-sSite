@@ -2,6 +2,7 @@
 
 import React from 'react';
 import AnimatedCamera from '@/components/animation/AnimatedCamera';
+import MovieSetBackground from '@/components/animation/MovieSetBackground';
 
 import HeroSection from '@/components/sections/HeroSection';
 import TheConceptSection from '@/components/sections/TheConceptSection';
@@ -17,6 +18,7 @@ export default function Home() {
   return (
     <main className="relative w-full text-slate-900 bg-transparent selection:bg-indigo-400/30">
       {/* 2D Animated Background Layer */}
+      <MovieSetBackground />
       <AnimatedCamera />
 
       {/* Foreground Scrolling HTML Content */}

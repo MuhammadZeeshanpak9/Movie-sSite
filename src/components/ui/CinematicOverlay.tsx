@@ -9,18 +9,18 @@ export default function CinematicOverlay() {
   const flareRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Elegant soft glow pulses
+    // Elegant soft glow pulses for atmospheric depth
     const glowPulse = () => {
       gsap.to('.silk-glow', {
-        opacity: 0.03 + Math.random() * 0.05,
-        duration: 4 + Math.random() * 2,
+        opacity: 0.02 + Math.random() * 0.04,
+        duration: 5 + Math.random() * 3,
         onComplete: glowPulse,
         ease: "sine.inOut"
       });
     };
     glowPulse();
 
-    // Subtle lens flare interaction
+    // Subtle lens flare that follows mouse with high inertia
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const xPercent = (clientX / window.innerWidth) * 100;
@@ -29,8 +29,8 @@ export default function CinematicOverlay() {
       gsap.to(flareRef.current, {
         left: `${xPercent}%`,
         top: `${yPercent}%`,
-        duration: 3,
-        ease: 'power3.out'
+        duration: 4,
+        ease: 'power2.out'
       });
     };
 
@@ -40,28 +40,24 @@ export default function CinematicOverlay() {
 
   return (
     <div ref={overlayRef} className="fixed inset-0 pointer-events-none z-[9999] select-none overflow-hidden">
-      {/* Silk Glow Base */}
-      <div className="silk-glow absolute inset-0 bg-indigo-100/5 mix-blend-overlay opacity-30" />
+      {/* Dynamic Silk Glow - Uses deep purple for depth */}
+      <div className="silk-glow absolute inset-0 bg-[#6a4a8c]/5 mix-blend-overlay" />
 
-      {/* Ultra-subtle Grain for texture (almost invisible) */}
-      <div className="absolute inset-0 opacity-[0.012] pointer-events-none" 
-           style={{ backgroundImage: `url('https://grainy-gradients.vercel.app/noise.svg')` }} />
-           
-      {/* Light Scanlines (Professional width) */}
-      <div className="absolute inset-0 opacity-[0.015] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(159,129,185,0.1)_50%)] bg-[length:100%_2px]" />
+      {/* Light Scanlines (Refined for 8K Raw feel) */}
+      <div className="absolute inset-0 opacity-[0.012] bg-[linear-gradient(rgba(0,0,0,0)_50%,rgba(106,74,140,0.1)_50%)] bg-[length:100%_4px]" />
       
-      {/* Soft Silk Vignette (Indigo based) */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(159,129,185,0.03)_100%)]" />
+      {/* Cinematic Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_50%,rgba(106,74,140,0.02)_100%)]" />
       
-      {/* Professional Lens Flare (Ultra Subtle) */}
+      {/* Focal Lens Flare (Ultra Subtle Lavender) */}
       <div 
         ref={flareRef}
-        className="absolute w-[800px] h-[800px] -translate-x-1/2 -translate-y-1/2 bg-indigo-200/5 blur-[150px] rounded-full mix-blend-screen"
+        className="absolute w-[1000px] h-[1000px] -translate-x-1/2 -translate-y-1/2 bg-[#d6c5e3]/5 blur-[200px] rounded-full mix-blend-screen"
       />
 
-      {/* Elegant Anamorphic Streaks */}
-      <div className="absolute top-[20%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-300/10 to-transparent" />
-      <div className="absolute bottom-[25%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-200/10 to-transparent" />
+      {/* Anamorphic Light Streaks */}
+      <div className="absolute top-[15%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#6a4a8c]/10 to-transparent" />
+      <div className="absolute bottom-[20%] left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#d6c5e3]/5 to-transparent blur-[1px]" />
     </div>
   );
 }

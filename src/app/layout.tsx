@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 
 import CinematicOverlay from '@/components/ui/CinematicOverlay';
 import SmoothScroll from '@/components/ui/SmoothScroll';
+import PageEntrance from '../components/animation/PageEntrance';
 
 export default function RootLayout({
   children,
@@ -29,10 +30,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
-      <body className="antialiased bg-white text-slate-900 selection:bg-indigo-400/30">
+      <body className="antialiased bg-white text-slate-900 selection:bg-indigo-400/30 film-grain">
+        <PageEntrance />
         <SmoothScroll>
           <CinematicOverlay />
-          {children}
+          <div className="page-content opacity-0">
+            {children}
+          </div>
         </SmoothScroll>
       </body>
     </html>

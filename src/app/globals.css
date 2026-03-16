@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-indigo-900: #1a103c;
-  --color-indigo-800: #2d1b54;
-  --color-indigo-400: #6a4a8c;
-  --color-indigo-200: #d6c5e3;
+  --color-primary-white: #ffffff;
+  --color-deep-purple: #6a4a8c;
+  --color-magnetic-indigo: #4a2a6c;
+  --color-soft-lavender: #d6c5e3;
+  --color-vibrant-accent: #b46ad8;
   
   --font-playfair: "Playfair Display", serif;
   --font-inter: "Inter", sans-serif;
@@ -12,13 +13,14 @@
 
   --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 :root {
   --foreground-rgb: 15, 23, 42; /* Slate 900 */
   --background-rgb: 255, 255, 255;
-  
-  --primary-accent: #6a4a8c;
+  --accent-purple: #6a4a8c;
+  --accent-soft: #9f81b9;
 }
 
 /* Performance & GPU Optimization */
@@ -42,7 +44,36 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Premium Minimalist Scrollbar - Disabled when Lenis is active */
+/* Cinematic Film Grain */
+.film-grain::after {
+  content: "";
+  position: fixed;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
+  animation: noise 0.2s infinite steps(1);
+}
+
+@keyframes noise {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 10%); }
+  80% { transform: translate(-15%, 0); }
+  90% { transform: translate(10%, 5%); }
+  100% { transform: translate(5%, 0); }
+}
+
+/* Premium Scrollbar */
 html.lenis {
   height: auto;
 }
@@ -51,45 +82,68 @@ html.lenis {
   scroll-behavior: auto !important;
 }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(159, 129, 185, 0.2);
+  background: rgba(106, 74, 140, 0.1);
   border-radius: 10px;
+  transition: background 0.3s ease;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(159, 129, 185, 0.5);
+  background: rgba(106, 74, 140, 0.3);
+}
+
+/* Typography & Visual Utilities */
+.reveal-text {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.expose-clip {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.2s var(--ease-cinematic);
+}
+
+.expose-clip.active {
+  clip-path: inset(0 0 0 0);
 }
 
 .outline-text {
-  -webkit-text-stroke: 1px rgba(159, 129, 185, 0.4);
+  -webkit-text-stroke: 1px rgba(106, 74, 140, 0.3);
   color: transparent;
-  transition: transform 0.7s var(--ease-cinematic), opacity 0.7s var(--ease-cinematic);
+  transition: all 0.7s var(--ease-cinematic);
+}
+
+.outline-text:hover {
+  -webkit-text-stroke: 1px rgba(106, 74, 140, 0.8);
+  transform: translateY(-2px);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(159, 129, 185, 0.1);
-  will-change: transform, opacity;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(106, 74, 140, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.02);
+  transition: all 0.5s var(--ease-cinematic);
 }
 
-.chromatic-aberration {
-  text-shadow: 1px 0 0 rgba(159, 129, 185, 0.2), -1px 0 0 rgba(159, 129, 185, 0.1);
+.glow-shadow-purple {
+  box-shadow: 0 0 20px rgba(106, 74, 140, 0);
+  transition: box-shadow 0.5s var(--ease-cinematic);
 }
+
+.glow-shadow-purple:hover {
+  box-shadow: 0 0 40px rgba(106, 74, 140, 0.3);
+}
+
+.magnetic-wrap {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Cinematic Transitions */
+.page-transition-enter { opacity: 0; transform: translateY(20px); }
+.page-transition-enter-active { opacity: 1; transform: translateY(0); transition: all 0.8s var(--ease-cinematic); }

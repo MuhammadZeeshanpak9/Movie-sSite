@@ -19,69 +19,80 @@ export default function HowItWorksSection() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: 'top 80%',
-        end: 'bottom 20%',
-        scrub: 1.2,
+        start: 'top 75%',
+        toggleActions: 'play none none reverse',
       }
     });
 
-    tl.from('.how-header', {
+    tl.from('.how-reveal', {
       opacity: 0,
       y: 40,
-      duration: 1.2,
-      ease: 'power3.out'
-    })
-    .from('.how-step', {
+      duration: 1.5,
+      stagger: 0.2,
+      ease: 'power4.out'
+    });
+
+    // Staggered Steps Entrance
+    gsap.from('.how-step', {
       opacity: 0,
-      y: 40,
+      x: (i) => i % 2 === 0 ? -50 : 50,
+      duration: 1.5,
       stagger: 0.1,
-      duration: 1.2,
-      ease: 'power3.out'
-    }, "-=0.8");
+      ease: 'expo.out',
+      scrollTrigger: {
+        trigger: '.how-grid',
+        start: 'top 85%',
+      }
+    });
   }, { scope: containerRef });
   
   return (
-    <section ref={containerRef} className="relative w-full py-24 md:py-60 px-8 z-10 bg-transparent overflow-hidden">
+    <section ref={containerRef} className="relative w-full py-20 md:py-40 px-8 z-10 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="how-header mb-20 md:mb-40">
-          <span className="text-[10px] font-mono text-indigo-400 tracking-[0.6em] mb-6 block uppercase font-black">Strategic Pipeline</span>
-          <h2 className="text-6xl md:text-[10rem] font-playfair font-black text-slate-900 leading-[0.8] tracking-tighter">
+        <div className="mb-16 md:mb-32 max-w-4xl">
+          <span className="how-reveal text-[10px] font-mono text-[#6a4a8c] tracking-[1em] mb-6 block uppercase font-black opacity-60">
+            STRATEGIC PIPELINE
+          </span>
+          <h2 className="how-reveal text-5xl md:text-8xl font-playfair font-black text-slate-900 leading-[0.9] tracking-tighter">
             THE <br />
             <span className="italic font-light text-[#6a4a8c]">PROCESS.</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="how-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {STEPS.map((step) => (
-            <div key={step.num} className="how-step gpu-accelerated flex flex-col group relative h-[400px] md:h-[500px] overflow-hidden border border-slate-50 bg-slate-50">
+            <div key={step.num} className="how-step group relative h-[400px] md:h-[550px] overflow-hidden glass-card border border-[#6a4a8c]/5">
               {/* Cinematic Image Frame */}
               <div className="absolute inset-0 z-0 overflow-hidden">
                 <Image 
                   src={step.image} 
                   alt={step.title} 
                   fill 
-                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" 
+                  className="object-cover transition-all duration-1500 group-hover:scale-110 ease-cinematic" 
                 />
-                <div className="absolute inset-0 bg-white/80 group-hover:bg-indigo-900/40 transition-colors duration-700" />
+                <div className="absolute inset-0 bg-white/10 group-hover:bg-[#6a4a8c]/90 transition-colors duration-1000" />
               </div>
 
-              <div className="relative h-full p-10 flex flex-col justify-end z-10 group-hover:text-white transition-colors duration-500">
-                <div className="flex items-center justify-between mb-8">
-                   <span className="text-xs font-mono text-indigo-400 group-hover:text-indigo-200 font-black tracking-widest">{step.num}</span>
-                   <div className="w-8 h-[1px] bg-indigo-200 group-hover:w-16 group-hover:bg-white transition-all duration-700" />
+              <div className="relative h-full p-12 flex flex-col justify-end z-10 group-hover:text-white transition-colors duration-700">
+                <div className="flex items-center justify-between mb-12">
+                   <span className="text-[10px] font-mono text-[#6a4a8c] group-hover:text-white font-black tracking-[0.5em]">{step.num}</span>
+                   <div className="w-12 h-[1px] bg-[#6a4a8c]/20 group-hover:w-24 group-hover:bg-white/40 transition-all duration-1000" />
                 </div>
                 
-                <div>
-                  <h3 className="text-2xl font-playfair font-black mb-4 tracking-tight uppercase leading-none">
+                <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-cinematic">
+                  <h3 className="text-4xl font-playfair font-black mb-8 tracking-tight uppercase leading-[1.1]">
                     {step.title}
                   </h3>
-                  <p className="text-[10px] font-medium leading-relaxed uppercase tracking-[0.2em] opacity-80 max-w-[200px]">
+                  <p className="text-[10px] font-light leading-relaxed uppercase tracking-[0.25em] opacity-60 group-hover:opacity-90 max-w-[220px] font-inter">
                     {step.desc}
                   </p>
                 </div>
 
+                {/* Interaction Accent */}
+                <div className="absolute top-12 right-12 w-12 h-12 border-t border-r border-[#6a4a8c]/10 group-hover:border-white/40 transition-all duration-1000" />
+                
                 {/* Progress Bar Accent */}
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#6a4a8c] group-hover:w-full transition-all duration-1000" />
+                <div className="absolute bottom-0 left-0 h-1.5 w-0 bg-[#6a4a8c] group-hover:bg-white group-hover:w-full transition-all duration-1000 ease-soft" />
               </div>
             </div>
           ))}
