@@ -15,7 +15,7 @@ const EXPERIENCES = [
     title: 'THE DIRECTOR',
     desc: 'Take the chair. Shape the environment, choose the cast, and decide where the lens focuses next.',
     label: 'SCENE 02',
-    image: '/assets/images/mission_img.png'
+    image: '/assets/images/Director.png'
   },
   {
     title: 'THE EPIC',
@@ -93,15 +93,15 @@ function ExperienceRow({ title, desc, label, index, image }: { title: string; de
       className={`gpu-accelerated flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-20 md:gap-40 items-center`}
     >
       {/* Visual Frame */}
-      <div className="flex-1 w-full aspect-[16/10] bg-slate-50 relative overflow-hidden group shadow-[0_40px_80px_rgba(0,0,0,0.05)] cursor-pointer glass-card border border-[#6a4a8c]/5">
-        <div className="absolute inset-0 z-0 transition-transform duration-1000 group-hover:scale-105">
+      <div className="flex-1 w-full aspect-[16/10] bg-white/5 relative overflow-hidden group shadow-[0_40px_80px_rgba(106,74,140,0.05)] cursor-pointer glass-card border border-[#6a4a8c]/10">
+        <div className="absolute inset-0 z-0 p-6 transition-transform duration-1000 group-hover:scale-105">
            {/* eslint-disable-next-line @next/next/no-img-element */}
            <img 
              src={image} 
              alt={title} 
-             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 ease-cinematic"
+             className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-1000 ease-cinematic"
            />
-           <div className="absolute inset-0 bg-white/10 group-hover:bg-transparent transition-colors duration-700" />
+           <div className="absolute inset-0 bg-white/5 group-hover:bg-transparent transition-colors duration-700" />
         </div>
         
         {/* Abstract Cinematic Overlays */}

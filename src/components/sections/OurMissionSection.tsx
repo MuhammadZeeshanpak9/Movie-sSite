@@ -87,15 +87,14 @@ export default function OurMissionSection() {
           </div>
         </div>
 
-        {/* Cinematic Visual */}
         <div className="mission-visual gpu-accelerated relative">
-          <div className="mission-visual-inner gpu-accelerated aspect-[4/5] bg-slate-50 relative overflow-hidden border border-slate-50 group shadow-[0_60px_120px_rgba(0,0,0,0.05)]">
-            <div className="absolute inset-0 transition-transform duration-1000 group-hover:scale-105">
+          <div className="mission-visual-inner gpu-accelerated aspect-square bg-white/5 relative overflow-hidden border border-[#6a4a8c]/10 group shadow-[0_60px_120px_rgba(106,74,140,0.1)]">
+            <div className="absolute inset-0 p-8 transition-transform duration-1000 group-hover:scale-105">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/assets/images/mission_img.png"
+                  src="/assets/images/Director.png"
                   alt="Cinematic Hardware Silhouette"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
                <div className="absolute inset-0 bg-[#6a4a8c]/5 group-hover:bg-transparent transition-colors duration-700" />
             </div>
